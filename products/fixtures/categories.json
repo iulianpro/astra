@@ -1,0 +1,18 @@
+[
+    {
+        "pk": 1,
+        "model": "products.category",
+        "fields": {
+            "name": "single_device",
+            "friendly_name": "Max.1 Device"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "products.category",
+        "fields": {
+            "name": "multi_device",
+            "friendly_name": "Max.4 Device-uri"
+        }
+    }
+]
