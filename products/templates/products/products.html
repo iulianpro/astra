@@ -25,17 +25,20 @@
                 {% for product in products %}
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 border-0 shadow card-hover">
-                        {% if product.image %}
-                        <a href="">
-                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                        </a>
-                        {% else %}
-                        <a href="">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
-                                alt="{{ product.name }}">
-                        </a>
-                        {% endif %}
-                        <div class="card-body px-3 py-5">
+                        <div class="p-4">
+                            {% if product.image %}
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="{{ product.image.url }}"
+                                    alt="{{ product.name }}">
+                            </a>
+                            {% else %}
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                                    alt="{{ product.name }}">
+                            </a>
+                            {% endif %}
+                        </div>
+                        <div class="card-body px-3 pb-5">
                             <div class="row">
                                 <div class="col-7 pl-4 pr-1">
                                     <p class="mb-0 font-weight-bold">{{ product.category.friendly_name }}</p>
@@ -102,7 +105,8 @@
                             <div class="row">
                                 <div class="col pr-3">
                                     <div class="pt-4 text-center">
-                                        <button type="button" class="btn btn-lightbutton px-5 py-3 rounded-pill">Comanda</button>
+                                        <button type="button"
+                                            class="btn btn-lightbutton px-5 py-3 rounded-pill">Comanda</button>
                                     </div>
                                 </div>
                             </div>
