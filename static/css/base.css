@@ -51,6 +51,25 @@ body {
     color: #000 !important;
 }
 
+.text-lightblue {
+    color: #165fb3;
+}
+
+.btn-lightbutton {
+    background-color: #165fb3;
+    color: #fff;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.4);
+}
+
+button.btn-lightbutton {
+    font-size: 1.1rem;
+}
+
+button:hover {
+    background-color: #fff;
+    color: #165fb3;
+}
+
 .bg-black {
     background: #000 !important;
 }
@@ -67,6 +86,15 @@ body {
     position: fixed;
     background: white;
     z-index: -1;
+}
+
+.card-hover:hover {
+    background-color: #e8f1f8 !important;
+}
+
+.price {
+    font-size: 2.8rem;
+    color: #165fb3;
 }
 
 /* -------------------------------- Media Queries */
