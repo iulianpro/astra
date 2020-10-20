@@ -8,7 +8,7 @@ body {
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
+    height: calc(100vh - 134px);
     color: #555;
     font-family: 'Lato';
 }
@@ -84,7 +84,7 @@ button:hover {
     top: 0;
     left: 0;
     position: fixed;
-    background: white;
+    background: #f9f9f9;
     z-index: -1;
 }
 
@@ -109,6 +109,14 @@ nav li a:hover, ul li a:hover {
     color: #165fb3 !important;
 }
 
+.header-container {
+    padding-top: 134px;
+}
+
+h2.logo-font {
+    font-size: 1.1rem;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -119,6 +127,30 @@ nav li a:hover, ul li a:hover {
     }
     div ul li {
         margin-right: 25px !important;
+    }
+}
+
+@media (max-width: 991px) {
+    div h1 p {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 767px) {
+    div h1 p {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 575px) {
+    div h1 p {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 400px) {
+    h2.logo-font {
+        font-size: 2rem;
     }
 }
 
@@ -133,7 +165,7 @@ nav li a:hover, ul li a:hover {
         z-index: 1030;
     }
     .header-container {
-        padding-top: 164px;
+        padding-top: 134px;
     }
 }
 

@@ -25,7 +25,7 @@
                 {% for product in products %}
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 border-0 shadow card-hover">
-                        <div class="p-4">
+                        <div class="px-4 pt-4">
                             {% if product.image %}
                             <a href="">
                                 <img class="card-img-top img-fluid" src="{{ product.image.url }}"
@@ -38,12 +38,14 @@
                             </a>
                             {% endif %}
                         </div>
-                        <div class="card-body px-3 pb-5">
+                        <div class="card-body px-4 pt-4 pb-5">
                             <div class="row">
-                                <div class="col-7 pl-4 pr-1">
-                                    <p class="mb-0 font-weight-bold">{{ product.category.friendly_name }}</p>
+                                <div class="col">
+                                    <p class="mb-0 font-weight-bold text-center">{{ product.category.friendly_name }}</p>
                                 </div>
-                                <div class="col-5 pl-1 pr-4 text-right">
+                            </div>
+                            <div class="row">
+                                <div class="col text-center">
                                     {% if product.rating %}
                                     <small class="text-muted"><i
                                             class="fas fa-star text-warning mr-1"></i>{{ product.rating }}/5</small>
