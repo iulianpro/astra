@@ -1,4 +1,4 @@
-<div class="collapse navbar-collapse" id="main-nav">
+<div class="d-lg-none collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto ml-auto">
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-3" href="">Acasa</a>
@@ -10,16 +10,32 @@
             <a class="logo-font font-weight-bold nav-link text-black mr-3" href="">Abonamente</a>
         </li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="">Acoperire</a>
-        </li>
-        <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-3" href="">FAQ</a>
         </li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="">Aplicatii</a>
-        </li>
-        <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-3" href="">Reseller</a>
+        </li>
+        <li class="d-none d-lg-inline list-inline-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <div>
+                    <p class="my-0">Contul meu</p>
+                </div>
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                <a href="" class="dropdown-item">Admin</a>
+                {% endif %}
+                <a href="" class="dropdown-item">Detalii cont</a>
+                <a href="{% url 'account_logout' %}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>
+                    Iesire</a>
+                {% else %}
+                <a href="{% url 'account_signup' %}" class="dropdown-item">Inregistrare</a>
+                <a href="{% url 'account_login' %}" class="dropdown-item"><i class="fas fa-sign-in-alt"></i>
+                    Login</a>
+                {% endif %}
+            </div>
         </li>
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black" href="">Contact</a>

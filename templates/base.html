@@ -45,45 +45,45 @@
 
 <body>
     <header class="container-fluid fixed-top">
-        <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+        <div id="topnav" class="row bg-white py-lg-3 d-none d-lg-flex">
+            <div class="col-12 col-lg-3 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
                     <h2 class="logo-font text-black my-0"><strong class="text-danger">Astra</strong>.IPTV</h2>
                 </a>
             </div>
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                <form method="GET" action="">
-                    <div class="input-group w-100">
-                        <input class="form-control border border-black rounded-0" type="text" name="q"
-                            placeholder="Cauta abonament">
-                        <div class="input-group-append">
-                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                                <span class="icon">
-                                    <i class="fas fa-search"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+            <div class="col-12 col-lg-9 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <li class="list-inline-item dropdown">
-                        <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2" href="">Acasa</a>
+                    </li>
+                    <li class="list-inline-item dropdown">
+                        <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2" href="">Despre noi</a>
+                    </li>
+                    <li class="list-inline-item dropdown">
+                        <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2" href="">Abonamente</a>
+                    </li>
+                    <li class="list-inline-item dropdown">
+                        <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2" href="">FAQ</a>
+                    </li>
+                    <li class="list-inline-item dropdown">
+                        <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2" href="">Reseller</a>
+                    </li>
+                    <li class="list-inline-item dropdown">
+                        <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2" href="#" id="user-options"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
-                                <div><i class="fas fa-user fa-lg"></i></div>
                                 <p class="my-0">Contul meu</p>
                             </div>
                         </a>
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <a href="" class="dropdown-item">Admin Management</a>
+                            <a href="" class="dropdown-item">Admin</a>
                             {% endif %}
                             <a href="" class="dropdown-item">Detalii cont</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item"><i
-                                    class="fas fa-sign-out-alt"></i> Iesire</a>
+                                    class="fas fa-sign-out-alt"></i>
+                                Iesire</a>
                             {% else %}
                             <a href="{% url 'account_signup' %}" class="dropdown-item">Inregistrare</a>
                             <a href="{% url 'account_login' %}" class="dropdown-item"><i class="fas fa-sign-in-alt"></i>
@@ -91,25 +91,13 @@
                             {% endif %}
                         </div>
                     </li>
-                    <li class="list-inline-item">
-                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
-                            href="">
-                            <div class="text-center">
-                                <div><i class="fas fa-shopping-bag fa-lg"></i></div>
-                                <p class="my-0">
-                                    {% if grand_total %}
-                                    ${{ grand_total|floatformat:2 }}
-                                    {% else %}
-                                    €0.00
-                                    {% endif %}
-                                </p>
-                            </div>
-                        </a>
+                    <li class="list-inline-item dropdown">
+                        <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2" href="">Contact</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="row bg-white">
+        <div class="d-lg-none row bg-white">
             <nav class="navbar navbar-expand-lg navbar-light w-100">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
                     aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">

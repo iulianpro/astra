@@ -97,6 +97,18 @@ button:hover {
     color: #165fb3;
 }
 
+.dropleft .dropdown-menu {
+    top: 90%;
+    right: 5%;
+    text-align: right;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.4);
+    background-color: rgb(255, 253, 253, .95);
+}
+
+nav li a:hover, ul li a:hover {
+    color: #165fb3 !important;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -104,6 +116,9 @@ button:hover {
 @media (min-width: 1200px) {
     .container {
         max-width: 80%;
+    }
+    div ul li {
+        margin-right: 25px !important;
     }
 }
 
