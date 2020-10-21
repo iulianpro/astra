@@ -9,6 +9,8 @@ class ProfileAdmin(admin.ModelAdmin):
         'default_town_or_city',
         'default_app',
         'default_mac',
+        'default_notes',
+        'default_mac_pass',
     )
 
     ordering = ('user',)
