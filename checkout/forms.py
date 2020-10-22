@@ -7,6 +7,9 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = ('full_name', 'email', 'phone_number',
                   'country', 'town_or_city', 'app', 'mac', 'mac_pass', 'notes',)
+        widgets = {
+            'notes': forms.Textarea(attrs={'rows': 3, 'cols': 40}),
+        }
 
     def __init__(self, *args, **kwargs):
         """
