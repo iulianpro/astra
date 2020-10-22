@@ -12,14 +12,16 @@ $('#id_default_country').change(function () {
 });
 
 let appSelected = $('#id_default_app').val();
-if (appSelected) {
+if (appSelected != 'select') {
+    $('#id_default_app').css('color', '#000');
+} else {
     $('#id_default_app').css('color', '#aab7c4');
 };
 $('#id_default_app').change(function () {
     appSelected = $(this).val();
-    if (!appSelected) {
-        $(this).css('color', '#aab7c4');
-    } else {
+    if (appSelected != 'select') {
         $(this).css('color', '#000');
+    } else {
+        $(this).css('color', '#aab7c4');
     }
 });
