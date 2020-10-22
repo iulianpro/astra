@@ -26,3 +26,6 @@ $('#id_app').change(function () {
     }
 });
 
+$("#submit-button").on("click", function () {
+    $('#loading-overlay').css({display: 'block'})
+});
