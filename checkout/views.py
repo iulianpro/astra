@@ -22,7 +22,13 @@ def checkout_payment(request):
             order_form.save()
             messages.success(request, 'Profile updated successfully')
             order_form = OrderForm()
-            
+
     template = 'checkout/payment.html'
+
+    return render(request, template)
+
+
+def checkout_success(request):
+    template = 'checkout/checkout_success.html'
 
     return render(request, template)
