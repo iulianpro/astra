@@ -102,3 +102,31 @@ a:hover {
     min-width: 200px !important;
     max-width: 450px !important;
 }
+
+.modal-body {
+    width: 300px;
+}
+
+.close {
+    margin: 0 10px 10px 0;
+}
+
+div.modal-content {
+    min-height: 300px;
+    width: 300px;
+    margin: auto;
+}
+
+.modal.fade.show {
+    padding-right: 0!important;
+}
+
+iframe {
+    min-height: 300px;
+    max-width: 298px;
+    margin-top: 50px;
+}
+
+.modal-dialog {
+    margin-top: 150px !important;
+}

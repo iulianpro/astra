@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="overlay"></div>
+<div class="overlay-website"></div>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -58,9 +58,22 @@
                             </p>
                             <p class="text-muted"><strong>ATENTIE:</strong> Pentru o buna functionare este indicata o
                                 viteza minima a internetului de min. 10-12Mbps dar min 20Mbps pentru 4K. Pentru a
-                                verifica conexiunea dvs., lansati<a href="https://fast.com/" target="_blank"
-                                    rel="noopener"> aici</a> un test de viteza.
+                                verifica conexiunea dvs, lansati <a type="button" data-toggle="modal"
+                                    data-target="#modal2"><strong> aici</strong></a> un test de viteza.
                             </p>
+                            <div class="modal fade" id="modal2" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-md" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body m-0 p-0">
+                                            <iframe src="https://fast.com/ro" frameborder="0"></iframe>
+                                            <button type="button" class="close overlay" data-dismiss="modal"
+                                                aria-label="Close" title="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </fieldset>
