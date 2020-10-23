@@ -23,19 +23,126 @@
             <hr>
         </div>
     </div>
-
     <div class="row">
         <div class="col-12 col-lg-6 order-lg-last mb-5">
-            <p class="text-muted">Empty column</p>
-            <div class="row">
-                <div class="col-7 offset-2">
-                    <p class="mb-1 mt-0 small text-muted">Item</p>
-                </div>
-                <div class="col-3 text-right">
-                    <p class="mb-1 mt-0 small text-muted">Subtotal</p>
-                </div>
-            </div>
-
+            <p class="text-muted empty">.</p>
+            <form id="payment-form">
+                <fieldset class="rounded px-3 mb-5">
+                    <legend class="fieldset-label small text-black px-2 w-auto">Informatii comanda:</legend>
+                    <hr class="mt-0">
+                    <div class="row">
+                        <div class="col-9">
+                            <p class="text-muted">Test 24h (maxim o conexiune)</p>
+                        </div>
+                        <div class="col-3 text-right">
+                            <p class="text-muted">€1.00</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-9">
+                            <h5 class="text-muted"><strong>Total:</strong></h5>
+                        </div>
+                        <div class="col-3 text-right">
+                            <h5 class="text-muted"><strong>€1.00</strong></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-muted mt-4">Pentru a putea achizitiona un abonament pentru oricare din
+                                parioade,
+                                este necesar ca in prealabil sa testati serviciul pentru 24 ore. Dupa confirmarea
+                                platii veti primi pe adresa de email indicata informatiile necesare pentru activare.
+                            </p>
+                            <p class="text-muted"><strong>ATENTIE:</strong> Pentru o buna functionare este indicata o
+                                viteza minima a internetului de min. 10-12Mbps dar min 20Mbps pentru 4K. Pentru a
+                                verifica conexiunea dvs., lansati<a href="https://fast.com/" target="_blank"
+                                    rel="noopener"> aici</a> un test de viteza.
+                            </p>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="rounded px-3 mb-5">
+                    <legend class="fieldset-label small text-black px-2 w-auto">Cum afli adresa MAC:</legend>
+                    <hr class="mt-0">
+                    <div class="accordion md-accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingOne1">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne1"
+                                    aria-expanded="true" aria-controls="collapseOne1">
+                                    <p class="mb-0"><i class="fas fa-angle-down rotate-icon mr-3"></i>Cum afli adresa
+                                        MAC a aplicatie Smart-IPTV</p>
+                                </a>
+                            </div>
+                            <div id="collapseOne1" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <img src="{{ MEDIA_URL }}smart-iptv.jpg" alt="smart-iptv">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingTwo2">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
+                                    <p class="mb-0"><i class="fas fa-angle-down rotate-icon mr-3"></i>Cum afli adresa
+                                        MAC a aplicatie NET-IPTV</p>
+                                </a>
+                            </div>
+                            <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <img src="{{ MEDIA_URL }}net-iptv.jpg" alt="net-iptv">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingThree3">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3">
+                                    <p class="mb-0"><i class="fas fa-angle-down rotate-icon mr-3"></i>Cum afli adresa
+                                        MAC a dispozitivului MAG</p>
+                                </a>
+                            </div>
+                            <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <img src="{{ MEDIA_URL }}mag-iptv.jpg" alt="mag-iptv">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingFour4">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseFour4" aria-expanded="false" aria-controls="collapseThree3">
+                                    <p class="mb-0"><i class="fas fa-angle-down rotate-icon mr-3"></i>Cum afli adresa
+                                        MAC a aplicatiei SET-IPTV</p>
+                                </a>
+                            </div>
+                            <div id="collapseFour4" class="collapse" role="tabpanel" aria-labelledby="headingFour4"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <img src="{{ MEDIA_URL }}set-iptv.jpg" alt="set-iptv">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingFive5">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseFive5" aria-expanded="false" aria-controls="collapseFive5">
+                                    <p class="mb-0"><i class="fas fa-angle-down rotate-icon mr-3"></i>Cum afli adresa
+                                        MAC a dispozitivului STB</p>
+                                </a>
+                            </div>
+                            <div id="collapseFive5" class="collapse" role="tabpanel" aria-labelledby="headingFive5"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <img src="{{ MEDIA_URL }}stb-iptv.jpg" alt="stb-iptv">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
         <div class="col-12 col-lg-6">
             <p class="text-muted">Finalizeaza comanda completand informatiile necesare mai jos:</p>

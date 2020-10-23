@@ -29,7 +29,6 @@ class OrderForm(forms.ModelForm):
             'notes': 'Nota comanda (opțional)',
         }
 
-        self.fields['full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
             if self.fields[field].required:
                 placeholder = f'{placeholders[field]} *'

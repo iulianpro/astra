@@ -58,3 +58,37 @@
     margin: 0;
     height: 100%;
 }
+
+.empty {
+    color: #f4f5f8 !important;
+}
+
+.card {
+    background-color: #f4f5f8 !important;
+    border: 0px !important;
+}
+
+.card-header {
+    background-color: #f4f5f8 !important;
+    border: 0px !important;
+}
+
+.card-header a {
+    color: #000;
+    text-decoration: none;
+}
+
+.card-body {
+    background-color: #f4f5f8 !important;
+    border: 0px !important;
+}
+
+.card-body img {
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+a:hover {
+    text-decoration: none;
+}
