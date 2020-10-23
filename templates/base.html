@@ -35,6 +35,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="https://js.stripe.com/v3"></script>
     {% endblock %}
 
     {% block extra_js %}
@@ -54,13 +55,15 @@
             <div class="col-12 col-lg-9 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <li class="list-inline-item dropdown">
-                        <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2" href="{% url 'home' %}">Acasa</a>
+                        <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2"
+                            href="{% url 'home' %}">Acasa</a>
                     </li>
                     <li class="list-inline-item dropdown">
                         <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2" href="">Despre noi</a>
                     </li>
                     <li class="list-inline-item dropdown">
-                        <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2" href="{% url 'products' %}">Abonamente</a>
+                        <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2"
+                            href="{% url 'products' %}">Abonamente</a>
                     </li>
                     <li class="list-inline-item dropdown">
                         <a class="logo-font font-weight-bold nav-link text-black px-0 mr-2" href="">FAQ</a>

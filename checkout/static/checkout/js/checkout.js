@@ -12,14 +12,14 @@ $('#id_country').change(function () {
 });
 
 let appSelected = $('#id_app').val();
-if (appSelected != 'select') {
+if (appSelected != '') {
     $('#id_app').css('color', '#000');
 } else {
     $('#id_app').css('color', '#aab7c4');
 };
 $('#id_app').change(function () {
     appSelected = $(this).val();
-    if (appSelected != 'select') {
+    if (appSelected != '') {
         $(this).css('color', '#000');
     } else {
         $(this).css('color', '#aab7c4');

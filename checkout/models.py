@@ -6,7 +6,6 @@ from django_countries.fields import CountryField
 
 class Order(models.Model):
     APP_CHOICE = [
-        ('select', 'Selecteaza aplicatia'),
         ('smart_iptv', 'Smart IPTV'),
         ('set_iptv', 'Set IPTV'),
         ('net_iptv', 'Net IPTV'),
@@ -15,13 +14,14 @@ class Order(models.Model):
         ('stb_device', 'Dispozitiv STB'),
         ('another_device', 'Alt dispozitiv'),
     ]
+    APP_CHOICE_AND_EMPTY = [('','Selecteza aplicatia *')] + APP_CHOICE
     order_number = models.CharField(max_length=32, null=False, editable=False)
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
-    country = CountryField(blank_label='Country', null=False, blank=False)
+    country = CountryField(blank_label='Country *', null=False, blank=False)
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
-    app = models.CharField(max_length=40, choices=APP_CHOICE, default='select')
+    app = models.CharField(max_length=40, choices=APP_CHOICE_AND_EMPTY)
     mac = models.CharField(max_length=40, null=False, blank=False)
     mac_pass = models.CharField(max_length=40, null=True, blank=True)
     notes = models.CharField(max_length=40, null=True, blank=True)
