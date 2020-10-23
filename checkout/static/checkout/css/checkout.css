@@ -92,3 +92,13 @@
 a:hover {
     text-decoration: none;
 }
+
+#info {
+    font-size: 1rem;
+    color: red;
+}
+
+.tooltip-inner {
+    min-width: 200px !important;
+    max-width: 450px !important;
+}

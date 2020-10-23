@@ -25,3 +25,7 @@ $('#id_app').change(function () {
         $(this).css('color', '#aab7c4');
     }
 });
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
