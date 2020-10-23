@@ -25,7 +25,3 @@ $('#id_app').change(function () {
         $(this).css('color', '#aab7c4');
     }
 });
-
-$("#submit-button").on("click", function () {
-    $('#loading-overlay').css({display: 'block'})
-});
