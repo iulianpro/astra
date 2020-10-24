@@ -34,9 +34,9 @@ def checkout_success(request, *callback_args, **callback_kwargs):
         template = 'home/index.html'
         return render(request, template)
     else:
-        order_paid = Order.objects.last()
-        order_paid.status = 'PLATITA'
-        order_paid.save()
+        # order_paid = Order.objects.last()
+        # order_paid.status = 'PLATITA'
+        # order_paid.save()
         template = 'checkout/checkout_success.html'
         return render(request, template)
 
@@ -46,8 +46,8 @@ def checkout_canceled(request, *callback_args, **callback_kwargs):
         template = 'home/index.html'
         return render(request, template)
     else:
-        order_canceled = Order.objects.last()
-        order_canceled.status = 'ANULATA'
-        order_canceled.save()
+        # order_canceled = Order.objects.last()
+        # order_canceled.status = 'ANULATA'
+        # order_canceled.save()
         template = 'checkout/checkout_canceled.html'
         return render(request, template)
