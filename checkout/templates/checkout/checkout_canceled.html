@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay-website"></div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h2 class="logo-font mb-4">Comanda a fost anulata</h2>
+            <hr>
+            <p class="text-black">Multumim pentru alegerea facuta. Ne pare rau sa vedem ca nu ati ales niciunul din
+                abonamentele noastre. Va stam la dispotie pentru orice intrebare aveti. Accesati butoanele de mai jos
+                pentru a revedea abonamentele noastre sau mergeti direct la formularul de comanda.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-7 text-left">
+            <a href="{% url 'products' %}" class="btn btn-black rounded-0 my-2">
+                <span class="icon mr-2">
+                    <i class="fas fa-angle-left"></i>
+                </span>
+                <span class="text-uppercase">Abonamente</span>
+            </a>
+            <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 my-2">
+                <span class="icon mr-2">
+                    <i class="fas fa-shopping-cart"></i>
+                </span>
+                <span class="text-uppercase">Comanda</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
