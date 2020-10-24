@@ -26,6 +26,7 @@ class Order(models.Model):
     mac_pass = models.CharField(max_length=40, null=True, blank=True)
     notes = models.CharField(max_length=40, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=40, null=True, blank=True, default='STAND-BY')
 
     def _generate_order_number(self):
         """
