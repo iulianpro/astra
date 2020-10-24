@@ -23,31 +23,39 @@ def checkout_payment(request):
             request.session['order_form_submitted'] = True
             order_form.save()
             order_form = OrderForm()
-
-    template = 'checkout/payment.html'
-
-    return render(request, template)
+            
+        template = 'checkout/payment.html'
+        return render(request, template)
+    else:
+        template = 'home/index.html'
+        return render(request, template)
 
 
 def checkout_success(request, *callback_args, **callback_kwargs):
     if not request.session.get('order_form_submitted', False):
+
         template = 'home/index.html'
         return render(request, template)
     else:
         # order_paid = Order.objects.last()
         # order_paid.status = 'PLATITA'
         # order_paid.save()
+        request.session['order_form_submitted'] = False
+
         template = 'checkout/checkout_success.html'
         return render(request, template)
 
 
 def checkout_canceled(request, *callback_args, **callback_kwargs):
     if not request.session.get('order_form_submitted', False):
+
         template = 'home/index.html'
         return render(request, template)
     else:
         # order_canceled = Order.objects.last()
         # order_canceled.status = 'ANULATA'
         # order_canceled.save()
+        request.session['order_form_submitted'] = False
+
         template = 'checkout/checkout_canceled.html'
         return render(request, template)
