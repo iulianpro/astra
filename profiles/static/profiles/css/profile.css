@@ -14,7 +14,7 @@
     color: #aab7c4;
 }
 
-.admin-fin button {
-    margin: 0 auto 25px;
-    min-width: 300px;
+.admin-fin a {
+    margin: 0 auto 15px;
+    max-width: 300px;
 }

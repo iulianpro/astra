@@ -29,9 +29,13 @@ class UserProfile(models.Model):
     default_mac = models.CharField(max_length=40, null=True, blank=True)
     default_mac_pass = models.CharField(max_length=40, null=True, blank=True)
     default_notes = models.CharField(max_length=40, null=True, blank=True)
+    default_stripe_id = models.CharField(max_length=40, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
+
+    def email(self):
+        return self.user.email
 
 
 @receiver(post_save, sender=User)

@@ -1,9 +1,12 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
 from .models import UserProfile
+
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = (
         'user',
+        'email',
         'default_phone_number',
         'default_country',
         'default_town_or_city',
@@ -11,6 +14,7 @@ class ProfileAdmin(admin.ModelAdmin):
         'default_mac',
         'default_notes',
         'default_mac_pass',
+        'default_stripe_id',
     )
 
     ordering = ('user',)
