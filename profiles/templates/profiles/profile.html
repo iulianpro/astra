@@ -25,7 +25,8 @@
     </div>
     <div class="row">
         <div class="col-12 col-lg-6">
-            <p class="text-muted">Informatii cont</p>
+            <p class="text-muted">Informatii cont: {% if fname %}{{ fname }}{% endif %}
+                {% if lname %}{{ lname }}{% endif %} - {{ email }}</p>
             <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
                 {{ form|crispy }}
@@ -34,9 +35,12 @@
         </div>
         <div class="col-12 col-lg-6 text-center admin-fin">
             <p class="text-muted">Informatii financiare</p>
-            <button class="btn btn-black rounded-0 text-uppercase d-block">Administrare abonament</button>
-            <button class="btn btn-black rounded-0 text-uppercase d-block">Schimba metoda de plata</button>
-            <button class="btn btn-black rounded-0 text-uppercase d-block">Informatii facturare</button>
+            <a type="button" href="{% url 'billing' %}"
+                class="btn btn-black rounded-0 text-uppercase d-block">Administrare abonament</a>
+            <a type="button" href="{% url 'payment-method' %}"
+                class="btn btn-black rounded-0 text-uppercase d-block">Schimba metoda de plata</a>
+            <a type="button" href="{% url 'billing-address' %}"
+                class="btn btn-black rounded-0 text-uppercase d-block">Informatii de facturare</a>
         </div>
 
     </div>
