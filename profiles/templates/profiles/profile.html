@@ -35,19 +35,35 @@
         </div>
         <div class="col-12 col-lg-6 text-center admin-fin">
             <p class="text-muted">Informatii financiare</p>
+            {% if customer_id != None %}
             <a type="button" href="{% url 'billing' %}"
                 class="btn btn-black rounded-0 text-uppercase d-block">Administrare abonament</a>
             <a type="button" href="{% url 'payment-method' %}"
                 class="btn btn-black rounded-0 text-uppercase d-block">Schimba metoda de plata</a>
             <a type="button" href="{% url 'billing-address' %}"
                 class="btn btn-black rounded-0 text-uppercase d-block">Informatii de facturare</a>
+            <a type="button" href="" class="btn btn-black rounded-0 text-uppercase d-block">Cumpara abonament nou</a>
+            {% else %}
+            <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Administrare abonament</a>
+            <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Schimba metoda de plata</a>
+            <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Informatii de facturare</a>
+            <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Cumpara abonament nou</a>
+            <p class="small text-danger my-0">
+                <span class="icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </span>
+                <span><strong class="logo-font">Atentie: </strong>Aceasta sectiune este inactiva fie pentru ca nu ati
+                    comandat inca un "Test 24h", fie in formularul de plata ati folosit o adresa de email diferita de
+                    cea cu care sunteti logat <strong>{{ email }}</strong>. Daca va aflati in cea de a doua situatie, va
+                    rugam sa ne contactati pentru remediere.</span>
+            </p>
+            {% endif %}
         </div>
-
     </div>
 </div>
+{% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
-{% endblock %}
 {% endblock %}

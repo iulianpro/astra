@@ -14,7 +14,7 @@ return_url = 'http://127.0.0.1:8000/profile/'
 @login_required()
 def profile(request):
     """ Display the user's profile. """
-    
+
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
@@ -28,12 +28,23 @@ def profile(request):
     fname = profile.user.first_name
     lname = profile.user.last_name
 
+    this_customer = stripe.Customer.list(email=email)
+    this_data = this_customer.data
+    for data in this_data:
+        customer_id = data.id
+        profile.default_stripe_id = customer_id
+        profile.save()
+
+    profile = get_object_or_404(UserProfile, user=request.user)
+    customer_id = profile.default_stripe_id
+    
     template = 'profiles/profile.html'
     context = {
         'form': form,
         'email': email,
         'fname': fname,
         'lname': lname,
+        'customer_id': customer_id,
     }
 
     return render(request, template, context)
