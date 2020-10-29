@@ -1,12 +1,30 @@
 from django.shortcuts import render
 from django.contrib import messages
 
+from profiles.models import UserProfile
 from .forms import OrderForm
 from .models import Order
 
 
 def checkout(request):
-    order_form = OrderForm()
+    if request.user.is_authenticated:
+        try:
+            profile = UserProfile.objects.get(user=request.user)
+            order_form = OrderForm(initial={
+                'full_name': profile.user.get_full_name(),
+                'email': profile.user.email,
+                'phone_number': profile.default_phone_number,
+                'country': profile.default_country,
+                'town_or_city': profile.default_town_or_city,
+                'app': profile.default_app,
+                'mac': profile.default_mac,
+                'mac_pass': profile.default_mac_pass,
+                'notes': profile.default_notes,
+            })
+        except UserProfile.DoesNotExist:
+            order_form = OrderForm()
+    else:
+        order_form = OrderForm()
 
     template = 'checkout/checkout.html'
     context = {
@@ -23,7 +41,7 @@ def checkout_payment(request):
             request.session['order_form_submitted'] = True
             order_form.save()
             order_form = OrderForm()
-            
+
         template = 'checkout/payment.html'
         return render(request, template)
     else:
