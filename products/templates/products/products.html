@@ -106,7 +106,7 @@
                                     <div class="pt-4 text-center">
                                         {% if user.is_authenticated %}
                                             {% if customer_id != None %}
-                                                <a href="" type="button" class="btn btn-black rounded-0 text-uppercase">Comanda</a>
+                                                <a href="{% url 'profile' %}" type="button" class="btn btn-black rounded-0 text-uppercase">Comanda</a>
                                             {% else %}
                                                 <a href="{% url 'checkout' %}" type="button" class="btn btn-black rounded-0 text-uppercase">Comanda</a>
                                             {% endif %}
