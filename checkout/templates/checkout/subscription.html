@@ -87,9 +87,10 @@
                         <div class="col-sm-12 col-md-3">
                             <form action="{% url 'subscription' %}" method="POST" id="payment-form" class="text-center">
                                 {% csrf_token %}
-                                <input type="hidden" id="{{ product.description_10 }}"
-                                    name="product_id" value="{{ product.description_10 }}" required>
-                                <button id="submit-subscription_{{ forloop.counter }}" class="btn btn-black rounded-0" type="submit" disabled>
+                                <input type="hidden" id="{{ product.description_10 }}" name="product_id"
+                                    value="{{ product.description_10 }}" required>
+                                <button id="submit-subscription_{{ forloop.counter }}" class="btn btn-black rounded-0"
+                                    type="submit" disabled>
                                     <span><i class="fas fa-sign-in-alt"></i></span>
                                 </button>
                             </form>
@@ -102,6 +103,13 @@
             </fieldset>
         </div>
     </div>
+</div>
+<div id="d-loading-overlay" class="d-none">
+    <h1 class="text-light logo-font loading-spinner">
+        <span class="icon">
+            <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+        </span>
+    </h1>
 </div>
 {% endblock %}
 
