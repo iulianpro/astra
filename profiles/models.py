@@ -30,6 +30,7 @@ class UserProfile(models.Model):
     default_mac_pass = models.CharField(max_length=40, null=True, blank=True)
     default_notes = models.CharField(max_length=40, null=True, blank=True)
     default_stripe_id = models.CharField(max_length=40, null=True, blank=True)
+    default_subscription = models.IntegerField(null=True, blank=True, default=0)
 
     def __str__(self):
         return self.user.username

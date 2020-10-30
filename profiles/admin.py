@@ -13,8 +13,8 @@ class ProfileAdmin(admin.ModelAdmin):
         'default_app',
         'default_mac',
         'default_notes',
-        'default_mac_pass',
         'default_stripe_id',
+        'default_subscription',
     )
 
     ordering = ('user',)

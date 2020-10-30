@@ -42,7 +42,12 @@
                 class="btn btn-black rounded-0 text-uppercase d-block">Schimba metoda de plata</a>
             <a type="button" href="{% url 'billing-address' %}"
                 class="btn btn-black rounded-0 text-uppercase d-block">Informatii de facturare</a>
-            <a type="button" href="" class="btn btn-black rounded-0 text-uppercase d-block">Comanda abonament nou</a>
+            {% if subscription != 0 %}
+            <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Comanda abonament nou</a>
+            {% else %}
+            <a type="button" href="{% url 'subscription' %}"
+                class="btn btn-black rounded-0 text-uppercase d-block">Comanda abonament nou</a>
+            {% endif %}
             <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Comanda Test 24h</a>
             {% else %}
             <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Administrare abonament</a>
@@ -51,6 +56,8 @@
             <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Comanda abonament nou</a>
             <a type="button" href="{% url 'checkout' %}" class="btn btn-black rounded-0 text-uppercase d-block">Comanda
                 Test 24h</a>
+            {% endif %}
+            {% if customer_id == None %}
             <p class="small text-danger mt-5">
                 <span class="icon">
                     <i class="fas fa-exclamation-circle"></i>
@@ -59,6 +66,15 @@
                     de plata ati folosit o adresa de email diferita de cea cu care sunteti logat
                     <strong>{{ email }}</strong>. Daca va aflati in cea de a doua situatie, va rugam sa ne contactati
                     pentru remediere.</span>
+            </p>
+            {% endif %}
+            {% if subscription != 0 %}
+            <p class="small text-danger mt-5">
+                <span class="icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </span>
+                <span>In contul aferent adresei de email <strong>{{ email }}</strong> aveti un abunament activ. Il
+                    puteti vizualiza sau modifica accesand butonul "Administrare Abonament".</span>
             </p>
             {% endif %}
         </div>

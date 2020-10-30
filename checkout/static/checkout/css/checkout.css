@@ -125,3 +125,19 @@ iframe {
     height: 650px;
     width: 350px;
 }
+
+.price-low {
+    font-size: 2rem;
+    color: #165fb3;
+}
+
+input[type=checkbox] {
+    width: 34px;
+    height: 24px;
+}
+
+div a img {
+    max-height: 200px;
+    width: auto !important;
+    margin: 0 auto;
+}

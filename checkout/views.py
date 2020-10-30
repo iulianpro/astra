@@ -1,9 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+import stripe
 
 from profiles.models import UserProfile
+from products.models import Product
 from .forms import OrderForm
 from .models import Order
+
+stripe.api_key = settings.STRIPE_SECRET
 
 
 def checkout(request):
@@ -84,3 +90,39 @@ def checkout_canceled(request, *callback_args, **callback_kwargs):
 
         template = 'checkout/checkout_canceled.html'
         return render(request, template)
+
+
+@login_required()
+def checkout_subscription(request):
+    profile = UserProfile.objects.get(user=request.user)
+    email = profile.user.email
+    customer_id = profile.default_stripe_id
+    products = Product.objects.all()
+
+    this_customer = stripe.Customer.list(email=email)
+    this_data = this_customer.data
+    for subscription in this_data:
+        have_subscription = subscription.subscriptions.data
+        e = len(have_subscription)
+    
+    if e != 0:
+        message = 'Aveti deja un abonament activ. Il puteti administra din "Contul meu"'
+        return redirect(reverse('profile'))
+    else:
+        if request.method == 'POST':
+            price_id = request.POST['product_id']
+
+            stripe.Subscription.create(
+                customer=customer_id,
+                items=[
+                    {"price": price_id},
+                ],
+            )
+            return redirect(reverse('profile'))
+
+        template = 'checkout/subscription.html'
+        context = {
+            'products': products,
+        }
+
+        return render(request, template, context)
