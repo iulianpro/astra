@@ -104,7 +104,14 @@ def checkout_subscription(request):
     for subscription in this_data:
         have_subscription = subscription.subscriptions.data
         e = len(have_subscription)
-    
+
+    for invoice in this_data:
+        have_invoice = invoice.invoice_settings.default_payment_method
+
+    if have_invoice == None:
+        message = 'Nu puteti inca activa un abonament. In "Contul meu" accesati butonul "Administrare Abonament", mergeti la "Metoda de plata" si setati metoda de plata ca IMPLICITA. Dupa acest pas puteti activa un abonament nou.'
+        return redirect(reverse('profile'))
+
     if e != 0:
         message = 'Aveti deja un abonament activ. Il puteti administra din "Contul meu"'
         return redirect(reverse('profile'))
