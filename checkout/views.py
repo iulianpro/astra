@@ -8,21 +8,28 @@ from .models import Order
 
 def checkout(request):
     if request.user.is_authenticated:
-        try:
-            profile = UserProfile.objects.get(user=request.user)
-            order_form = OrderForm(initial={
-                'full_name': profile.user.get_full_name(),
-                'email': profile.user.email,
-                'phone_number': profile.default_phone_number,
-                'country': profile.default_country,
-                'town_or_city': profile.default_town_or_city,
-                'app': profile.default_app,
-                'mac': profile.default_mac,
-                'mac_pass': profile.default_mac_pass,
-                'notes': profile.default_notes,
-            })
-        except UserProfile.DoesNotExist:
-            order_form = OrderForm()
+        profile = UserProfile.objects.get(user=request.user)
+        customer_id = profile.default_stripe_id
+
+        if customer_id == None:
+            try:
+                order_form = OrderForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.default_phone_number,
+                    'country': profile.default_country,
+                    'town_or_city': profile.default_town_or_city,
+                    'app': profile.default_app,
+                    'mac': profile.default_mac,
+                    'mac_pass': profile.default_mac_pass,
+                    'notes': profile.default_notes,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            template = 'home/index.html'
+            return render(request, template)
+
     else:
         order_form = OrderForm()
 
