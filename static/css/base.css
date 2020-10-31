@@ -282,3 +282,16 @@ h2.logo-font {
         padding-top: 134px;
     }
 }
+
+.stripe-img {
+    height: 60px;
+    width: auto;
+    float: right;
+    margin-top: 10px;
+}
+
+.stripe-img img {
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+}

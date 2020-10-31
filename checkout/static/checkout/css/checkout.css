@@ -68,6 +68,16 @@
     border: 0px !important;
 }
 
+.card-subscription {
+    background-color: #fff !important;
+    border: 1px solid #fff !important;
+}
+
+.card-subscription-selected {
+    background-color: #e8f1f8 !important;
+    border: 1px solid #000 !important;
+}
+
 .card-header {
     background-color: #f4f5f8 !important;
     border: 0px !important;
@@ -140,4 +150,14 @@ div a img {
     max-height: 200px;
     width: auto !important;
     margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+    div.row:nth-child(1) {
+        text-align: center !important;
+        margin-top: 20px !important;
+    }
+    .admin-fin{
+        margin-top: 20px !important;
+    }
 }

@@ -24,40 +24,49 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-6 order-lg-last mb-5">
-            <p class="text-muted empty">.</p>
-            <form id="payment-form">
-                <fieldset class="rounded px-3 mb-5">
-                    <legend class="fieldset-label small text-black px-2 w-auto">Informatii comanda:</legend>
-                    <hr class="mt-0">
-                    <div class="row">
-                        <div class="col-8">
-                            <p id="subscription_choice" class="text-muted">Selecteaza un abonament:</p>
-                        </div>
-                        <div class="col-4 text-right">
-                            <p id="price_1" class="text-muted">€0.00 / luna</p>
-                        </div>
+        <div class="col-12 col-lg-6 order-lg-last mb-3">
+            <p class="text-muted">Informatii comanda:</p>
+            <fieldset class="rounded px-3 mb-3">
+                <legend class="fieldset-label small text-black px-2 w-auto">Abonamentul (planul) achitionat poate fi
+                    anulat sau modificat oricand din <a href="{% url 'profile' %}"> Contul meu</a> accesand sectiunea
+                    "Administrare Abonament".</legend>
+                <legend class="fieldset-label small text-black px-2 w-auto">Puteti activa un singur abonament (plan)
+                    selectand una din variantele din partea stanga. Prin apasarea butonului patrat negru sunteti de
+                    acord cu <a href="">Termenii si Conditiile</a> serviciului iar cardul dvs va fi debitat cu
+                    contravaloarea eferenta. </legend>
+                <legend class="fieldset-label small text-black px-2 w-auto mb-4">ASTRA.IPTV nu are acces nicio secunda
+                    la datele cardului dvs. Acestea sunt stocate si procesate automat in mod securizat si criptat de
+                    catre Stripe Payments Europe Limited Irlanda.</legend>
+                <hr class="mt-0">
+                <div class="row">
+                    <div class="col-8">
+                        <p id="subscription_choice" class="text-muted">Selecteaza un abonament:</p>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <h5 class="text-muted"><strong>Total:</strong></h5>
-                        </div>
-                        <div class="col-4 text-right">
-                            <h5 id="price_2" class="text-muted font-weight-bold">€0.00 / luna</h5>
-                        </div>
+                    <div class="col-4 text-right">
+                        <p id="price_1" class="text-muted">€0.00 / luna</p>
                     </div>
-                </fieldset>
-
-            </form>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <h5 class="text-muted"><strong>Total:</strong></h5>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h5 id="price_2" class="text-muted font-weight-bold">€0.00 / luna</h5>
+                    </div>
+                </div>
+                <hr class="mt-4">
+                <div class="stripe-img">
+                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}stripe.png" alt="Stripe Secure Payments">
+                </div>
+            </fieldset>
         </div>
         <div class="col-12 col-lg-6">
-            <p class="text-muted">Activeaza abonamentul dorit:</p>
+            <p class="text-muted">Selecteaza un abonament (plan):</p>
             <fieldset class="rounded px-3 mb-5">
-                <legend class="fieldset-label small text-black px-2 w-auto">Date personale:</legend>
                 {% for product in products %}
                 {% if product.name != 'Test 24h' %}
 
-                <div class="card border-1 shadow card-hover mb-4">
+                <div id="card_{{ forloop.counter }}" class="card-subscription border-1 shadow card-hover mb-4">
                     <div class="row m-0 p-0 align-items-center">
                         <div class="col-sm-12 col-md-1">
                             <input type="checkbox" id="checkbox_{{ forloop.counter }}">
@@ -84,7 +93,7 @@
                                     {{ product.category.friendly_name }}</p>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-3 mb-4 mt-3">
                             <form action="{% url 'subscription' %}" method="POST" id="payment-form" class="text-center">
                                 {% csrf_token %}
                                 <input type="hidden" id="{{ product.description_10 }}" name="product_id"
