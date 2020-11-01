@@ -18,7 +18,7 @@ class OrderForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'full_name': 'Nume si Prenume',
+            'full_name': 'Prenume si Nume (Ex: Ioana Maria Popescu)',
             'email': 'Adresa email',
             'phone_number': 'WhatsApp (daca doriti sa fiti contactat)',
             'country': 'Tara',

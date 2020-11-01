@@ -4,7 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 import stripe
 
+from django.contrib.auth.models import User
 from profiles.models import UserProfile
+from profiles.forms import UserProfileForm
 from products.models import Product
 from .forms import OrderForm
 from .models import Order
@@ -54,6 +56,33 @@ def checkout_payment(request):
             request.session['order_form_submitted'] = True
             order_form.save()
             order_form = OrderForm()
+
+        if request.user.is_authenticated:
+            profile = UserProfile.objects.get(user=request.user)
+            profile_data = {
+                'default_phone_number': request.POST['phone_number'],
+                'default_country': request.POST['country'],
+                'default_town_or_city': request.POST['town_or_city'],
+                'default_app': request.POST['app'],
+                'default_mac': request.POST['mac'],
+                'default_mac_pass': request.POST['mac_pass'],
+            }
+
+            user_data = request.POST['full_name']
+
+            user_profile_form = UserProfileForm(profile_data, instance=profile)
+            if user_profile_form.is_valid():
+                user_profile_form.save()
+
+            fname_lname = user_data.split()
+            lname = fname_lname[-1]
+            fname = ' '.join(map(str, fname_lname[:-1]))
+
+            user = request.user
+
+            user.first_name = fname
+            user.last_name = lname
+            user.save()
 
         template = 'checkout/payment.html'
         return render(request, template)
