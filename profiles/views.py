@@ -21,7 +21,7 @@ def profile(request):
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profile updated successfully')
+            messages.success(request, 'Informatiile au fost salvate in contul dvs.')
 
     form = UserProfileForm(instance=profile)
     email = profile.user.email

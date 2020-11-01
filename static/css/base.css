@@ -295,3 +295,24 @@ h2.logo-font {
     width: auto;
     overflow: hidden;
 }
+
+/* ------------------------------- bootstrap toasts */
+
+.message-container {
+    position: fixed;
+    top: 135px;
+    right: 10px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+.toast-header {
+    border-top: 5px solid !important;
+}

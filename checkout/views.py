@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.utils.html import format_html
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 import stripe
@@ -137,11 +138,13 @@ def checkout_subscription(request):
         have_invoice = invoice.invoice_settings.default_payment_method
 
     if have_invoice == None:
-        message = 'Nu puteti inca activa un abonament. In "Contul meu" accesati butonul "Administrare Abonament", mergeti la "Metoda de plata" si setati metoda de plata existenta ca IMPLICITA sau adaugati o metoda de plata si setati-o ca implicita. Dupa acest pas puteti activa un abonament nou.'
+        messages.info(request, format_html(
+            'Pentru a activa un abonament nou mergeti mai intai la "Administrare Abonament", apasati "....." si setati metoda de plata ca implicita'))
         return redirect(reverse('profile'))
 
     if e != 0:
-        message = 'Aveti deja un abonament activ. Il puteti administra din "Contul meu"'
+        messages.info(
+            request, 'Aveti deja un abonament activ. Il puteti administra din "Contul meu"')
         return redirect(reverse('profile'))
     else:
         if request.method == 'POST':
@@ -153,6 +156,8 @@ def checkout_subscription(request):
                     {"price": price_id},
                 ],
             )
+            messages.success(
+            request, 'Abonamentul dvs, a fost activat cu succes!')
             return redirect(reverse('profile'))
 
         template = 'checkout/subscription.html'
