@@ -28,24 +28,30 @@
     </div>
     <div class="row">
         <div class="col-12 col-lg-6 order-lg-last mb-5">
-            <p class="text-muted empty">.</p>
             <form id="payment-form">
+                <p class="text-muted">Informatii comanda:</p>
                 <fieldset class="rounded px-3 mb-5">
-                    <legend class="fieldset-label small text-black px-2 w-auto">Informatii comanda:</legend>
-                    <hr class="mt-0">
+                    
                     <div class="row">
                         <div class="col">
-                            <p class="small">Pentru a putea achizitiona un abonament pentru oricare din
-                                parioade, este necesar ca in prealabil sa testati serviciul pentru 24 ore. Dupa
-                                confirmarea platii veti primi pe adresa de email indicata informatiile necesare pentru
-                                activare.
-                            </p>
-                            <p class="small"><strong>ATENTIE:</strong> Pentru o buna functionare este indicata o
-                                viteza de download de min. 10-12 Mbps pentru formatele <strong>SD, HD, FullHD</strong>
-                                si min 25 Mbps pentru formatul <strong>UHD 4K</strong>. Pentru a verifica conexiunea
-                                dvs, lansati <a type="button" data-toggle="modal" data-target="#modal2"><strong>
-                                        AICI</strong></a> un test de viteza.
-                            </p>
+                            <legend class="fieldset-label small text-black px-2 w-auto">Pentru a putea achizitiona un
+                                abonament este necesar ca in prealabil sa testati serviciul.
+                            </legend>
+                            <legend class="fieldset-label small text-black px-2 w-auto">Pentru o buna functionare a
+                                stream-urilor este indicata o viteza de download de min. 10-12 Mbps insa min 25 Mbps
+                                pentru formatul <strong>UHD 4K</strong>. Verificati conexiunea dvs <a type="button"
+                                    data-toggle="modal" data-target="#modal2"><strong>
+                                        <span style="color:#479efd;"> AICI</span></strong></a>.
+                            </legend>
+                            <legend class="fieldset-label small text-black px-2 w-auto"><strong><span
+                                        style="color:red;">ASTRA</span>.IPTV</strong> nu are acces in niciun moment la
+                                datele cardului dvs. Acestea sunt stocate si procesate automat in mod securizat si
+                                criptat de catre Stripe Payments Europe Limited Irlanda.
+                            </legend>
+                            <legend class="fieldset-label small text-black px-2 w-auto mb-4">Prin plasarea comenzii
+                                sunteti de acord cu <a href="">Termenii si Conditiile</a> serviciului iar cardul
+                                dvs va fi debitat cu €1.00.
+                            </legend>
                             <div class="modal fade" id="modal2" tabindex="-1" role="dialog">
                                 <div class="modal-dialog modal-md" role="document">
                                     <div class="modal-content">
@@ -78,6 +84,7 @@
                             <h5 class="text-muted"><strong>€1.00</strong></h5>
                         </div>
                     </div>
+                    <hr class="mt-4">
                     <div class="row">
                         <div class="col">
                             <div class="stripe-img">
@@ -172,7 +179,6 @@
             </form>
         </div>
         <div class="col-12 col-lg-6">
-            <p class="text-muted">Finalizeaza comanda completand informatiile necesare mai jos:</p>
             <form action="{% url 'payment' %}" method="POST" id="payment-form">
                 {% csrf_token %}
                 <fieldset class="rounded px-3 mb-5">
