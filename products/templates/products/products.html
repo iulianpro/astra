@@ -42,7 +42,8 @@
                         <div class="card-body px-4 pt-4 pb-5">
                             <div class="row">
                                 <div class="col">
-                                    <p class="mb-0 font-weight-bold text-center">{{ product.category.friendly_name }}</p>
+                                    <p class="mb-0 font-weight-bold text-center">{{ product.category.friendly_name }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="row">
@@ -104,15 +105,8 @@
                             <div class="row">
                                 <div class="col pr-3">
                                     <div class="pt-4 text-center">
-                                        {% if user.is_authenticated %}
-                                            {% if customer_id != None %}
-                                                <a href="{% url 'profile' %}" type="button" class="btn btn-black rounded-0 text-uppercase">Comanda</a>
-                                            {% else %}
-                                                <a href="{% url 'checkout' %}" type="button" class="btn btn-black rounded-0 text-uppercase">Comanda</a>
-                                            {% endif %}
-                                        {% else %}
-                                            <a href="{% url 'checkout' %}" type="button" class="btn btn-black rounded-0 text-uppercase">Comanda</a>
-                                        {% endif %}
+                                        <a href="{% url 'checkout' %}" type="button"
+                                            class="btn btn-black rounded-0 text-uppercase">Comanda</a>
                                     </div>
                                 </div>
                             </div>

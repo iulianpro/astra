@@ -30,7 +30,7 @@ def profile(request):
 
     this_customer = stripe.Customer.list(email=email)
     this_data = this_customer.data
-    
+
     for data in this_data:
         customer_id = data.id
         profile.default_stripe_id = customer_id
@@ -46,6 +46,38 @@ def profile(request):
     customer_id = profile.default_stripe_id
     subscription = profile.default_subscription
 
+    try:
+        if length != 0:
+            invoice = have_sub[0].latest_invoice
+            customer_invoice = stripe.Invoice.retrieve(
+                invoice,
+            )
+            hosted_invoice_url = customer_invoice.hosted_invoice_url
+            template = 'profiles/profile.html'
+            context = {
+                'form': form,
+                'email': email,
+                'fname': fname,
+                'lname': lname,
+                'customer_id': customer_id,
+                'subscription': subscription,
+                'hosted_invoice_url': hosted_invoice_url,
+            }
+            return render(request, template, context)
+        else:
+            print('Customer doesn\'t have invoice')
+    except:
+        template = 'profiles/profile.html'
+        context = {
+            'form': form,
+            'email': email,
+            'fname': fname,
+            'lname': lname,
+            'customer_id': customer_id,
+            'subscription': subscription,
+        }
+        return render(request, template, context)
+
     template = 'profiles/profile.html'
     context = {
         'form': form,
@@ -55,7 +87,6 @@ def profile(request):
         'customer_id': customer_id,
         'subscription': subscription,
     }
-
     return render(request, template, context)
 
 
