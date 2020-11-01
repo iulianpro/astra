@@ -35,8 +35,7 @@ def checkout(request):
             except UserProfile.DoesNotExist:
                 order_form = OrderForm()
         else:
-            template = 'home/index.html'
-            return render(request, template)
+            return redirect(reverse('subscription'))
 
     else:
         order_form = OrderForm()
@@ -97,9 +96,9 @@ def checkout_success(request, *callback_args, **callback_kwargs):
         template = 'home/index.html'
         return render(request, template)
     else:
-        # order_paid = Order.objects.last()
-        # order_paid.status = 'PLATITA'
-        # order_paid.save()
+        order_paid = Order.objects.last()
+        order_paid.status = 'PLATITA'
+        order_paid.save()
         request.session['order_form_submitted'] = False
 
         template = 'checkout/checkout_success.html'
@@ -112,9 +111,9 @@ def checkout_canceled(request, *callback_args, **callback_kwargs):
         template = 'home/index.html'
         return render(request, template)
     else:
-        # order_canceled = Order.objects.last()
-        # order_canceled.status = 'ANULATA'
-        # order_canceled.save()
+        order_canceled = Order.objects.last()
+        order_canceled.status = 'ANULATA'
+        order_canceled.save()
         request.session['order_form_submitted'] = False
 
         template = 'checkout/checkout_canceled.html'
@@ -138,7 +137,7 @@ def checkout_subscription(request):
         have_invoice = invoice.invoice_settings.default_payment_method
 
     if have_invoice == None:
-        message = 'Nu puteti inca activa un abonament. In "Contul meu" accesati butonul "Administrare Abonament", mergeti la "Metoda de plata" si setati metoda de plata ca IMPLICITA. Dupa acest pas puteti activa un abonament nou.'
+        message = 'Nu puteti inca activa un abonament. In "Contul meu" accesati butonul "Administrare Abonament", mergeti la "Metoda de plata" si setati metoda de plata existenta ca IMPLICITA sau adaugati o metoda de plata si setati-o ca implicita. Dupa acest pas puteti activa un abonament nou.'
         return redirect(reverse('profile'))
 
     if e != 0:
