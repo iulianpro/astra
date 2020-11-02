@@ -128,19 +128,16 @@ def checkout_subscription(request):
     customer_id = profile.default_stripe_id
     products = Product.objects.all()
 
+    if (profile.default_country == None and profile.default_town_or_city == None and profile.default_app and profile.default_mac == None):
+        messages.info(
+            request, 'Pentru a activa un abonament este necesar sa aveti datele de profil marcate cu (*) actualizate')
+        return redirect(reverse('profile'))
+
     this_customer = stripe.Customer.list(email=email)
     this_data = this_customer.data
     for subscription in this_data:
         have_subscription = subscription.subscriptions.data
         e = len(have_subscription)
-
-    for invoice in this_data:
-        have_invoice = invoice.invoice_settings.default_payment_method
-
-    if have_invoice == None:
-        messages.info(request, format_html(
-            'Pentru a activa un abonament nou mergeti mai intai la "Administrare Abonament", apasati "....." si setati metoda de plata ca implicita'))
-        return redirect(reverse('profile'))
 
     if e != 0:
         messages.info(
@@ -157,7 +154,7 @@ def checkout_subscription(request):
                 ],
             )
             messages.success(
-            request, 'Abonamentul dvs, a fost activat cu succes!')
+                request, 'Abonamentul dvs, a fost activat cu succes!')
             return redirect(reverse('profile'))
 
         template = 'checkout/subscription.html'
