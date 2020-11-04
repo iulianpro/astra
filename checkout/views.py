@@ -1,9 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.utils.html import format_html
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 import stripe
+import random
+import string
 
 from django.contrib.auth.models import User
 from profiles.models import UserProfile
@@ -84,6 +87,47 @@ def checkout_payment(request):
             user.last_name = lname
             user.save()
 
+        if request.user.is_authenticated == False:
+            def random_string_generator(size=10, chars=string.ascii_lowercase + string.digits):
+                return ''.join(random.choice(chars) for _ in range(size))
+
+            this_username = request.POST['email']
+            this_password = random_string_generator()
+            this_email = request.POST['email']
+            print(this_password)
+
+            if not User.objects.filter(username=this_username).exists():
+                user = User.objects.create_user(
+                    username=this_username,
+                    password=this_password,
+                    email=this_email,
+                )
+                user.save()
+                user = authenticate(username=this_username,
+                                    password=this_password)
+                if user is not None:
+                    login(request, user)
+
+                    user_data = request.POST['full_name']
+                    fname_lname = user_data.split()
+                    lname = fname_lname[-1]
+                    fname = ' '.join(map(str, fname_lname[:-1]))
+                    user = request.user
+                    user.first_name = fname
+                    user.last_name = lname
+                    user.save()
+
+                    profile = UserProfile.objects.get(user=request.user)
+                    profile.default_phone_number = request.POST['phone_number']
+                    profile.default_country = request.POST['country']
+                    profile.default_town_or_city = request.POST['town_or_city']
+                    profile.default_app = request.POST['app']
+                    profile.default_mac = request.POST['mac']
+                    profile.default_mac_pass = request.POST['mac_pass']
+                    profile.save()
+
+                    # Keep in mind: to send the login details to the User
+
         template = 'checkout/payment.html'
         return render(request, template)
     else:
@@ -113,7 +157,7 @@ def checkout_success(request, *callback_args, **callback_kwargs):
                     customer_id = data.id
                     profile.default_stripe_id = customer_id
                     profile.save()
-        
+
         request.session['order_form_submitted'] = False
 
         template = 'checkout/checkout_success.html'
@@ -149,7 +193,7 @@ def checkout_subscription(request):
             return redirect(reverse('profile'))
     else:
         messages.warning(
-                request, 'Puteti activa un abonament numai dupa ce comandati un Test 24H')
+            request, 'Puteti activa un abonament numai dupa ce comandati un Test 24H')
         return redirect(reverse('profile'))
 
     this_customer = stripe.Customer.list(email=email)
