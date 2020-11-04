@@ -127,6 +127,10 @@ def checkout_payment(request):
                     profile.save()
 
                     # Keep in mind: to send the login details to the User
+            else:
+                messages.error(
+                    request, 'Aveti deja un cont cu aceste date, pentru a continua va rugam sa va autentificati')
+                return redirect(reverse('account_login'))
 
         template = 'checkout/payment.html'
         return render(request, template)
