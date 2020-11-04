@@ -94,7 +94,6 @@ def checkout_payment(request):
             this_username = request.POST['email']
             this_password = random_string_generator()
             this_email = request.POST['email']
-            print(this_password)
 
             if not User.objects.filter(username=this_username).exists():
                 user = User.objects.create_user(
@@ -202,13 +201,32 @@ def checkout_subscription(request):
 
     this_customer = stripe.Customer.list(email=email)
     this_data = this_customer.data
+
+    have_default_payment_method = this_data[0].invoice_settings.default_payment_method
+
+    if have_default_payment_method == None:
+        # interogate API to retrieve payment_method
+        customer_payment_method_list = stripe.PaymentMethod.list(
+            customer=customer_id,
+            type="card",
+        )
+
+        customer_default_payment_method = customer_payment_method_list.data[0].id
+        # interogate API to set up default payment_method
+        stripe.Customer.modify(
+            customer_id,
+            invoice_settings={
+                "default_payment_method": customer_default_payment_method
+            },
+        )
+
     for subscription in this_data:
         have_subscription = subscription.subscriptions.data
         e = len(have_subscription)
 
     if e != 0:
         messages.info(
-            request, 'Aveti deja un abonament activ. Il puteti administra din "Contul meu"')
+            request, 'Aveti deja un abonament activ. Il puteti administra din aceasta pagina')
         return redirect(reverse('profile'))
     else:
         if request.method == 'POST':

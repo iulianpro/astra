@@ -21,7 +21,8 @@ def profile(request):
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Informatiile au fost salvate in contul dvs.')
+            messages.success(
+                request, 'Informatiile au fost salvate cu succes')
 
     form = UserProfileForm(instance=profile)
     email = profile.user.email
@@ -30,6 +31,12 @@ def profile(request):
 
     this_customer = stripe.Customer.list(email=email)
     this_data = this_customer.data
+
+    if profile.default_stripe_id == None:
+        for data in this_data:
+            stripe_id = data.id
+            profile.default_stripe_id = stripe_id
+            profile.save()
 
     for sub in this_data:
         have_sub = sub.subscriptions.data

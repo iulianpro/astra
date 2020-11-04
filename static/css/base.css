@@ -300,7 +300,7 @@ h2.logo-font {
 
 .message-container {
     position: fixed;
-    top: 135px;
+    top: 155px;
     right: 10px;
     min-width: 350px;
     z-index: 99999999999;
