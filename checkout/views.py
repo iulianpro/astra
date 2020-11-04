@@ -134,15 +134,16 @@ def checkout_payment(request):
         template = 'checkout/payment.html'
         return render(request, template)
     else:
-        template = 'home/index.html'
-        return render(request, template)
+        messages.error(
+            request, 'Nu sunteti autorizat sa accesati aceasta pagina!')
+        return redirect(reverse('home'))
 
 
 def checkout_success(request, *callback_args, **callback_kwargs):
     if not request.session.get('order_form_submitted', False):
-
-        template = 'home/index.html'
-        return render(request, template)
+        messages.error(
+            request, 'Nu sunteti autorizat sa accesati aceasta pagina!')
+        return redirect(reverse('home'))
     else:
         order_paid = Order.objects.last()
         order_paid.status = 'PLATITA'
@@ -169,9 +170,9 @@ def checkout_success(request, *callback_args, **callback_kwargs):
 
 def checkout_canceled(request, *callback_args, **callback_kwargs):
     if not request.session.get('order_form_submitted', False):
-
-        template = 'home/index.html'
-        return render(request, template)
+        messages.error(
+            request, 'Nu sunteti autorizat sa accesati aceasta pagina!')
+        return redirect(reverse('home'))
     else:
         order_canceled = Order.objects.last()
         order_canceled.status = 'ANULATA'
