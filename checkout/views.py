@@ -100,6 +100,20 @@ def checkout_success(request, *callback_args, **callback_kwargs):
         order_paid = Order.objects.last()
         order_paid.status = 'PLATITA'
         order_paid.save()
+
+        if request.user.is_authenticated:
+            profile = get_object_or_404(UserProfile, user=request.user)
+            email = profile.user.email
+            stripe_id = profile.default_stripe_id
+
+            if stripe_id == None:
+                this_customer = stripe.Customer.list(email=email)
+                this_data = this_customer.data
+                for data in this_data:
+                    customer_id = data.id
+                    profile.default_stripe_id = customer_id
+                    profile.save()
+        
         request.session['order_form_submitted'] = False
 
         template = 'checkout/checkout_success.html'
@@ -128,9 +142,14 @@ def checkout_subscription(request):
     customer_id = profile.default_stripe_id
     products = Product.objects.all()
 
-    if (profile.default_country == None and profile.default_town_or_city == None and profile.default_app and profile.default_mac == None):
-        messages.info(
-            request, 'Pentru a activa un abonament este necesar sa aveti datele de profil marcate cu (*) actualizate')
+    if customer_id != None:
+        if (profile.default_country == None and profile.default_town_or_city == None and profile.default_app and profile.default_mac == None):
+            messages.info(
+                request, 'Pentru a activa un abonament este necesar sa aveti datele de profil marcate cu (*) actualizate')
+            return redirect(reverse('profile'))
+    else:
+        messages.warning(
+                request, 'Puteti activa un abonament numai dupa ce comandati un Test 24H')
         return redirect(reverse('profile'))
 
     this_customer = stripe.Customer.list(email=email)

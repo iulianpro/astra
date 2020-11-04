@@ -31,11 +31,6 @@ def profile(request):
     this_customer = stripe.Customer.list(email=email)
     this_data = this_customer.data
 
-    for data in this_data:
-        customer_id = data.id
-        profile.default_stripe_id = customer_id
-        profile.save()
-
     for sub in this_data:
         have_sub = sub.subscriptions.data
         length = len(have_sub)

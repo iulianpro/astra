@@ -302,6 +302,7 @@ h2.logo-font {
     position: fixed;
     top: 135px;
     right: 10px;
+    min-width: 350px;
     z-index: 99999999999;
 }
 
@@ -310,9 +311,5 @@ h2.logo-font {
 }
 
 .toast-capper {
-    height: 2px;
-}
-
-.toast-header {
-    border-top: 5px solid !important;
+    height: 5px;
 }
