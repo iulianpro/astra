@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.conf import settings
 from django_countries.fields import CountryField
+from django.contrib.auth.models import User
 
 
 class Order(models.Model):
@@ -14,7 +15,7 @@ class Order(models.Model):
         ('stb_device', 'Dispozitiv STB'),
         ('another_device', 'Alt dispozitiv'),
     ]
-    APP_CHOICE_AND_EMPTY = [('','Selecteza aplicatia *')] + APP_CHOICE
+    APP_CHOICE_AND_EMPTY = [('', 'Selecteza aplicatia *')] + APP_CHOICE
     order_number = models.CharField(max_length=32, null=False, editable=False)
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
@@ -26,7 +27,8 @@ class Order(models.Model):
     mac_pass = models.CharField(max_length=40, null=True, blank=True)
     notes = models.CharField(max_length=40, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=40, null=True, blank=True, default='STAND-BY')
+    status = models.CharField(max_length=40, null=True,
+                              blank=True, default='STAND-BY')
 
     def _generate_order_number(self):
         """
@@ -45,3 +47,19 @@ class Order(models.Model):
 
     def __str__(self):
         return self.order_number
+
+
+class ActiveSubscription(models.Model):
+    sub_customer = models.OneToOneField(User, on_delete=models.CASCADE)
+    sub_email = models.CharField(max_length=32, null=True, blank=True)
+    sub_date_created = models.CharField(max_length=32, null=True, blank=True)
+    sub_period = models.IntegerField(null=True, blank=True)
+    sub_date_start = models.CharField(max_length=32, null=True, blank=True)
+    sub_date_end = models.CharField(max_length=32, null=True, blank=True)
+    sub_price = models.IntegerField(null=True, blank=True)
+    sub_currency = models.CharField(max_length=5, null=True, blank=True)
+    sub_status = models.CharField(max_length=10, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.sub_customer.first_name

@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.utils.html import format_html
 from django.contrib.auth import authenticate, login
@@ -7,6 +8,7 @@ from django.conf import settings
 import stripe
 import random
 import string
+import time
 
 from django.contrib.auth.models import User
 from profiles.models import UserProfile
@@ -14,6 +16,7 @@ from profiles.forms import UserProfileForm
 from products.models import Product
 from .forms import OrderForm
 from .models import Order
+from .models import ActiveSubscription
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -239,6 +242,60 @@ def checkout_subscription(request):
                     {"price": price_id},
                 ],
             )
+            this_customer = stripe.Customer.list(email=email)
+            this_data = this_customer.data
+
+            format = "%d/%m/%Y"
+            date_created = this_data[0].subscriptions.data[0].created
+            str_date_created = time.strftime(
+                format, time.localtime(date_created))
+
+            date_start = this_data[0].subscriptions.data[0].current_period_start
+            str_date_start = time.strftime(format, time.localtime(date_start))
+
+            date_end = this_data[0].subscriptions.data[0].current_period_end
+            str_date_end = time.strftime(format, time.localtime(date_end))
+
+            import_status = this_data[0].subscriptions.data[0].plan.active
+            if import_status == True:
+                this_status = 'ACTIVE'
+            else:
+                this_status = 'CANCELED'
+
+            interval = this_data[0].subscriptions.data[0].plan.interval
+            interval_count = this_data[0].subscriptions.data[0].plan.interval_count
+
+            if interval == 'month':
+                set_interval = interval_count
+            else:
+                set_interval = 12
+
+            try:
+                active_subscription = ActiveSubscription.objects.get(sub_customer=request.user)
+                active_subscription.sub_date_created = str_date_created,
+                active_subscription.sub_period = set_interval,
+                active_subscription.sub_date_start = str_date_start,
+                active_subscription.sub_date_end = str_date_end,
+                active_subscription.sub_price = this_data[0].subscriptions.data[0].plan.amount/100,
+                active_subscription.sub_currency = this_data[0].subscriptions.data[0].plan.currency.upper(),
+                active_subscription.sub_status = this_status
+                active_subscription.save()
+
+            except ActiveSubscription.DoesNotExist:
+                active_subscription = ActiveSubscription(
+                    sub_customer=request.user,
+                    sub_email=request.user.first_name + ' ' + request.user.last_name,
+                    sub_date_created=str_date_created,
+                    sub_period=set_interval,
+                    sub_date_start=str_date_start,
+                    sub_date_end=str_date_end,
+                    sub_price=this_data[0].subscriptions.data[0].plan.amount/100,
+                    sub_currency=this_data[0].subscriptions.data[0].plan.currency.upper(
+                    ),
+                    sub_status=this_status
+                )
+                active_subscription.save(force_insert=True)
+
             messages.success(
                 request, 'Abonamentul dvs, a fost activat cu succes!')
             return redirect(reverse('profile'))
