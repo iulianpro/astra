@@ -25,9 +25,9 @@
     </div>
     <div class="row">
         <div class="col-12 col-lg-6">
-            <p class="text-muted mb-0"><strong>{% if fname %}{{ fname }}{% endif %}
-                    {% if lname %}{{ lname }}{% endif %}</strong> &nbsp;|&nbsp; {{ email }} &nbsp;|&nbsp; Credit cont:
-                {% if balance %}€{{ balance|floatformat:2 }}{% else %}€0.00{% endif %}</p>
+            <p class="text-muted mb-0"><strong>{% if fname %} {{ fname }} {% else %} Prenume {% endif %}
+                    {% if lname %}{{ lname }} {% else %} Nume {% endif %}</strong> &nbsp;|&nbsp; {{ email }}
+                &nbsp;|&nbsp; Credit cont: {% if balance %}€{{ balance|floatformat:2 }}{% else %}€0.00{% endif %}</p>
             {% if b %}
             <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Abonament activ: {{ b }}
                 luni, activat la {{ c }}, valabil pana la {{ d }}</p>
