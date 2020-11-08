@@ -1,3 +1,4 @@
+
 let countrySelected = $('#id_country').val();
 if (!countrySelected) {
     $('#id_country').css('color', '#aab7c4');
@@ -28,4 +29,10 @@ $('#id_app').change(function () {
 
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
-})
+});
+
+$(document).ready(function () {
+    $('#submit-button').click(function (e) {
+        $('#d-loading-overlay').removeClass('d-none');
+    });
+});

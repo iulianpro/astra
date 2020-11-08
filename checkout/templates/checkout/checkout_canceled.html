@@ -34,12 +34,21 @@
                 </span>
                 <span class="text-uppercase">Abonamente</span>
             </a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}" class="btn btn-black rounded-0 my-2">
+                <span class="icon mr-2">
+                    <i class="fas fa-user-circle"></i>
+                </span>
+                <span class="text-uppercase">Contul meu</span>
+            </a>
+            {% else %}
             <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 my-2">
                 <span class="icon mr-2">
                     <i class="fas fa-shopping-cart"></i>
                 </span>
                 <span class="text-uppercase">Comanda</span>
             </a>
+            {% endif %}
         </div>
     </div>
 </div>

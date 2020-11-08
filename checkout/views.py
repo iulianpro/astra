@@ -5,6 +5,7 @@ from django.utils.html import format_html
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.core.mail import send_mail
 import stripe
 import random
 import string
@@ -109,6 +110,13 @@ def checkout_payment(request):
                                     password=this_password)
                 if user is not None:
                     login(request, user)
+
+                    subject = 'Contul tau Astra.IPTV a fost creat cu succes'
+                    body_email = 'Datele tale de logare sunt: Username: ' + \
+                        this_username + '; Password: ' + this_password
+                    sender = settings.DEFAULT_FROM_EMAIL
+                    receiver = this_username
+                    send_mail(subject, body_email, sender, [receiver, ], fail_silently=False,)
 
                     user_data = request.POST['full_name']
                     fname_lname = user_data.split()
