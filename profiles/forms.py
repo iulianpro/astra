@@ -14,7 +14,7 @@ class UserProfileForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'default_phone_number': 'Telefon WhatsApp (daca doresti sa fii contactat)',
+            'default_phone_number': 'Telefon international (Ex: +39 000 000 0000)',
             'default_town_or_city': 'Orasul *',
             'default_app': 'Selectea aplicatia',
             'default_mac': 'Adresa MAC / TV ID *',
