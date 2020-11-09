@@ -20,7 +20,7 @@ class OrderForm(forms.ModelForm):
         placeholders = {
             'full_name': 'Prenume si Nume (Ex: Ioana Maria Popescu)',
             'email': 'Adresa email',
-            'phone_number': 'WhatsApp (daca doriti sa fiti contactat)',
+            'phone_number': 'Telefon international (Ex: +39 000 000 0000 sau +40 700 000 000)',
             'country': 'Tara',
             'town_or_city': 'Orasul',
             'app': 'Selectati aplicatia',
