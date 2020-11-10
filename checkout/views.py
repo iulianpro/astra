@@ -116,7 +116,8 @@ def checkout_payment(request):
                         this_username + '; Password: ' + this_password
                     sender = settings.DEFAULT_FROM_EMAIL
                     receiver = this_username
-                    send_mail(subject, body_email, sender, [receiver, ], fail_silently=False,)
+                    send_mail(subject, body_email, sender, [
+                              receiver, ], fail_silently=False,)
 
                     user_data = request.POST['full_name']
                     fname_lname = user_data.split()
@@ -266,9 +267,9 @@ def checkout_subscription(request):
 
             import_status = this_data[0].subscriptions.data[0].plan.active
             if import_status == True:
-                this_status = 'ACTIVE'
+                this_status = 'ACTIVATA'
             else:
-                this_status = 'CANCELED'
+                this_status = 'DEZACTIVATA'
 
             interval = this_data[0].subscriptions.data[0].plan.interval
             interval_count = this_data[0].subscriptions.data[0].plan.interval_count
@@ -279,13 +280,15 @@ def checkout_subscription(request):
                 set_interval = 12
 
             try:
-                active_subscription = ActiveSubscription.objects.get(sub_customer=request.user)
+                active_subscription = ActiveSubscription.objects.get(
+                    sub_customer=request.user)
                 active_subscription.sub_date_created = str_date_created,
                 active_subscription.sub_period = set_interval,
                 active_subscription.sub_date_start = str_date_start,
                 active_subscription.sub_date_end = str_date_end,
                 active_subscription.sub_price = this_data[0].subscriptions.data[0].plan.amount/100,
-                active_subscription.sub_currency = this_data[0].subscriptions.data[0].plan.currency.upper(),
+                active_subscription.sub_currency = this_data[0].subscriptions.data[0].plan.currency.upper(
+                ),
                 active_subscription.sub_status = this_status
                 active_subscription.save()
 
@@ -303,6 +306,16 @@ def checkout_subscription(request):
                     sub_status=this_status
                 )
                 active_subscription.save(force_insert=True)
+
+                this_price = this_data[0].subscriptions.data[0].plan.amount/100
+                subject = 'Abonament nou activat pentru: ' + request.user.email
+                body_email = 'Userul ' + request.user.email + \
+                    ' a activat un nou abonament de €' + str(int(this_price)) + \
+                    ' cu statusul ' + this_status + '.'
+                sender = settings.DEFAULT_FROM_EMAIL
+                receiver = settings.DEFAULT_FROM_EMAIL
+                send_mail(subject, body_email, sender, [
+                    receiver, ], fail_silently=False,)
 
             messages.success(
                 request, 'Abonamentul dvs, a fost activat cu succes!')

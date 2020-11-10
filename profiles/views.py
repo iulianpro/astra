@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.conf import settings
 import stripe
 import time
@@ -60,7 +61,6 @@ def profile(request):
         date_end = this_data[0].subscriptions.data[0].current_period_end
         str_date_end = time.strftime(format, time.localtime(date_end))
         import_status = this_data[0].subscriptions.data[0].cancel_at_period_end
-        
 
         if import_status != True:
             this_status = 'ACTIVATA'
@@ -77,6 +77,10 @@ def profile(request):
 
         active_subscription = ActiveSubscription.objects.get(
             sub_customer=request.user)
+
+        now_sub_price = active_subscription.sub_price
+        now_sub_status = active_subscription.sub_status
+
         a = str_date_created,
         active_subscription.sub_date_created = a[0]
         b = set_interval,
@@ -91,6 +95,18 @@ def profile(request):
         ),
         active_subscription.sub_currency = f[0]
         active_subscription.sub_status = this_status
+
+        if now_sub_price != e[0] or now_sub_status != this_status:
+            subject = 'Modificare abonament user ' + request.user.email
+            body_email = 'Userul ' + request.user.email + ' a modificat abonamentul de €' + str(now_sub_price) + \
+                ' in abonament de €' + \
+                str(int(e[0])) + ' si statusul din ' + \
+                now_sub_status + ' in ' + this_status + '.'
+            sender = settings.DEFAULT_FROM_EMAIL
+            receiver = settings.DEFAULT_FROM_EMAIL
+            send_mail(subject, body_email, sender, [
+                      receiver, ], fail_silently=False,)
+
         active_subscription.save()
 
     try:
