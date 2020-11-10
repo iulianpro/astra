@@ -90,13 +90,15 @@
             {% endif %}
             <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Comanda Test 24h</a>
             {% else %}
+            <a type="button" href="{% url 'checkout' %}" class="btn btn-black rounded-0 text-uppercase d-block">Comanda
+                Test 24h</a>
+            <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Comanda abonament nou</a>
             <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Administrare / Istoric</a>
             <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Metoda de plata</a>
             <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Adresa facturare</a>
             <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Factura / Chitanta</a>
-            <a type="button" class="btn btn-black rounded-0 text-uppercase d-block">Comanda abonament nou</a>
-            <a type="button" href="{% url 'checkout' %}" class="btn btn-black rounded-0 text-uppercase d-block">Comanda
-                Test 24h</a>
+            <a type="button" href="{% url 'account_change_password' %}"
+                class="btn btn-black rounded-0 text-uppercase d-block">Resetare parola</a>
             {% endif %}
             {% if customer_id == None %}
             <p class="small text-danger mt-5">
