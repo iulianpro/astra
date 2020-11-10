@@ -18,9 +18,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from allauth.account import views as allauth_views
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('account/password/change/', login_required(allauth_views.PasswordChangeView.as_view(
+        success_url=reverse_lazy('profile'))), name='account_change_password'),
     path('', include('home.urls')),
     path('products/', include('products.urls')),
     path('profile/', include('profiles.urls')),
