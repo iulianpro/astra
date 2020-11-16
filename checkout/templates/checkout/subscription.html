@@ -29,15 +29,19 @@
             <fieldset class="rounded px-3 mb-3">
                 <legend class="fieldset-label small text-black px-2 w-auto">Abonamentul (planul) achitionat poate fi
                     anulat sau modificat oricand din <a href="{% url 'profile' %}"> Contul meu</a> accesand sectiunea
-                    "Administrare Abonament".</legend>
-                <legend class="fieldset-label small text-black px-2 w-auto">Puteti activa un singur abonament (plan)
-                    selectand una din variantele din partea stanga. Prin apasarea butonului patrat negru sunteti de
-                    acord cu <a href="">Termenii si Conditiile</a> serviciului iar cardul dvs va fi debitat cu
-                    contravaloarea eferenta. </legend>
-                <legend class="fieldset-label small text-black px-2 w-auto mb-4"><strong><span
+                    "Administrare / Istoric".
+                </legend>
+                <legend class="fieldset-label small text-black px-2 w-auto"><strong><span
                             style="color:red;">ASTRA</span>.IPTV</strong> nu are acces in niciun moment la datele
                     cardului dvs. Acestea sunt stocate si procesate automat in mod securizat si criptat de catre Stripe
-                    Payments Europe Limited Irlanda.</legend>
+                    Payments Europe Limited Irlanda.
+                </legend>
+                <legend class="fieldset-label small text-black px-2 w-auto mb-4"><strong><span style="color:red;"><i
+                                class="fas fa-exclamation-circle"> </i></span></strong> Puteti activa un singur
+                    abonament (plan) selectand una din variantele din partea stanga. Prin apasarea butonului PAY sunteti
+                    de acord cu<a href=""> Termenii</a> si <a href="">Conditiile</a> serviciului iar cardul dvs va fi
+                    debitat cu contravaloarea mentionata in rubrica Total.
+                </legend>
                 <hr class="mt-0">
                 <div class="row">
                     <div class="col-8">
@@ -66,7 +70,6 @@
             <fieldset class="rounded px-3 mb-5">
                 {% for product in products %}
                 {% if product.name != 'Test 24h' %}
-
                 <div id="card_{{ forloop.counter }}" class="card-subscription border-1 shadow card-hover mb-4">
                     <div class="row m-0 p-0 align-items-center">
                         <div class="col-sm-12 col-md-1">
@@ -101,13 +104,12 @@
                                     value="{{ product.description_10 }}" required>
                                 <button id="submit-subscription_{{ forloop.counter }}" class="btn btn-black rounded-0"
                                     type="submit" disabled>
-                                    <span><i class="fas fa-sign-in-alt"></i></span>
+                                    <span>PAY</span>
                                 </button>
                             </form>
                         </div>
                     </div>
                 </div>
-
                 {% endif %}
                 {% endfor %}
             </fieldset>
