@@ -320,3 +320,9 @@ h2.logo-font {
 .toast-capper {
     height: 5px;
 }
+
+/* --- */
+
+.carousel-text-bg {
+    background-color: rgb(0, 0, 0, .5);
+}
