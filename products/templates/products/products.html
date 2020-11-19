@@ -39,7 +39,7 @@
                             </a>
                             {% endif %}
                         </div>
-                        <div class="card-body px-4 pt-4 pb-5">
+                        <div class="card-body px-4 pt-4 pb-4">
                             <div class="row">
                                 <div class="col">
                                     <p class="mb-0 font-weight-bold text-center">{{ product.category.friendly_name }}
@@ -47,58 +47,36 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col text-center">
-                                    {% if product.rating %}
-                                    <small class="text-muted"><i
-                                            class="fas fa-star text-warning mr-1"></i>{{ product.rating }}/5</small>
-                                    {% else %}
-                                    <small class="text-muted">No Rating</small>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col pr-3">
-                                    <p class="lead price py-4 mb-0 text-center font-weight-bold">€ {{ product.price }}
+                                    <p class="lead price py-3 mb-0 text-center font-weight-bold">€ {{ product.price }}
                                     </p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col pr-3">
                                     {% if product.description_1 %}
-                                    <p class="text-center mb-2"><i class="fas fa-check text-lightblue"></i>
+                                    <p class="mb-2"><i class="fas fa-check text-lightblue"></i>
                                         {{ product.description_1 }}</p>
                                     {% endif %}
                                     {% if product.description_2 %}
-                                    <p class="text-center mb-2"><i class="fas fa-check text-lightblue"></i>
+                                    <p class="mb-2"><i class="fas fa-check text-lightblue"></i>
                                         {{ product.description_2 }}</p>
                                     {% endif %}
                                     {% if product.description_3 %}
-                                    <p class="text-center mb-2"><i class="fas fa-check text-lightblue"></i>
+                                    <p class="mb-2"><i class="fas fa-check text-lightblue"></i>
                                         {{ product.description_3 }}</p>
                                     {% endif %}
                                     {% if product.description_4 %}
-                                    <p class="text-center mb-2"><i class="fas fa-check text-lightblue"></i>
+                                    <p class="mb-2"><i class="fas fa-check text-lightblue"></i>
                                         {{ product.description_4 }}</p>
                                     {% endif %}
                                     {% if product.description_5 %}
-                                    <p class="text-center mb-2"><i class="fas fa-check text-lightblue"></i>
+                                    <p class="mb-2"><i class="fas fa-check text-lightblue"></i>
                                         {{ product.description_5 }}</p>
                                     {% endif %}
                                     {% if product.description_6 %}
-                                    <p class="text-center mb-2"><i class="fas fa-check text-lightblue"></i>
+                                    <p class="mb-2"><i class="fas fa-check text-lightblue"></i>
                                         {{ product.description_6 }}</p>
-                                    {% endif %}
-                                    {% if product.description_7 %}
-                                    <p class="text-center mb-2"><i class="fas fa-check text-lightblue"></i>
-                                        {{ product.description_7 }}</p>
-                                    {% endif %}
-                                    {% if product.description_8 %}
-                                    <p class="text-center mb-2"><i class="fas fa-check text-lightblue"></i>
-                                        {{ product.description_8 }}</p>
-                                    {% endif %}
-                                    {% if product.description_9 %}
-                                    <p class="text-center mb-2"><i class="fas fa-check text-lightblue"></i>
-                                        {{ product.description_9 }}</p>
                                     {% endif %}
                                 </div>
                             </div>
