@@ -68,6 +68,15 @@
         <div class="col-12 col-lg-6">
             <p class="text-muted">Selecteaza un abonament (plan):</p>
             <fieldset class="rounded px-3 mb-5">
+                <div class="col-12 my-3">
+                    <hr>
+                </div>
+                <div class="col-12 text-center">
+                    <h5 class="text-muted m-0">Abonamente pentru 1 dispozitiv</h5>
+                </div>
+                <div class="col-12 my-3">
+                    <hr>
+                </div>
                 {% for product in products %}
                 {% if product.name != 'Test 24h' %}
                 <div id="card_{{ forloop.counter }}" class="card-subscription border-1 shadow card-hover mb-4">
@@ -78,15 +87,11 @@
                         <div class="col-sm-12 col-md-3 py-4 px-4">
                             <div class="text-center">
                                 {% if product.image %}
-                                <a href="">
-                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}"
-                                        alt="{{ product.name }}">
-                                </a>
+                                <img class="card-img-top img-fluid" src="{{ product.image.url }}"
+                                    alt="{{ product.name }}">
                                 {% else %}
-                                <a href="">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
-                                        alt="{{ product.name }}">
-                                </a>
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                                    alt="{{ product.name }}">
                                 {% endif %}
                             </div>
                         </div>
@@ -110,6 +115,17 @@
                         </div>
                     </div>
                 </div>
+                {% if forloop.counter == 4 %}
+                <div class="col-12 my-3">
+                    <hr>
+                </div>
+                <div class="col-12 text-center">
+                    <h5 class="text-muted m-0">Abonamente pentru 2+ dispozitive</h5>
+                </div>
+                <div class="col-12 my-3">
+                    <hr>
+                </div>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
             </fieldset>
