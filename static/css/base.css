@@ -18,7 +18,7 @@ body {
 }
 
 .h-logo img {
-    width: 200px;
+    width: 200px !important;
     height: auto;
 }
 
