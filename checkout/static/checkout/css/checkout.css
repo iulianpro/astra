@@ -144,6 +144,7 @@ iframe {
 input[type=checkbox] {
     width: 34px;
     height: 24px;
+    cursor: pointer;
 }
 
 div a img {
