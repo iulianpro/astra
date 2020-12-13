@@ -32,7 +32,8 @@ $(function () {
 });
 
 $(document).ready(function () {
-    $('#submit-button').click(function (e) {
+    $('#submit-button').click(function () {
+        $('#payment-form').vaidate();
         $('#d-loading-overlay').removeClass('d-none');
     });
 });
