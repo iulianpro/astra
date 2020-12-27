@@ -27,17 +27,18 @@
         <div class="col-12 col-lg-6 order-lg-last mb-3">
             <p class="text-muted">Informatii comanda:</p>
             <fieldset class="rounded px-3 mb-3">
-                <legend class="fieldset-label subscription-legend text-black px-2 w-auto">Abonamentul (planul) achitionat poate fi
-                    anulat sau modificat oricand din <a href="{% url 'profile' %}"> Contul meu</a> accesand sectiunea
-                    "Administrare / Istoric".
+                <legend class="fieldset-label subscription-legend text-black px-2 w-auto">Abonamentul (planul)
+                    achitionat poate fi anulat sau modificat oricand din <a href="{% url 'profile' %}"> Contul meu</a>
+                    accesand sectiunea "Administrare / Istoric".
                 </legend>
                 <legend class="fieldset-label subscription-legend text-black px-2 w-auto"><strong><span
                             style="color:red;">ASTRA</span>.IPTV</strong> nu are acces in niciun moment la datele
-                    cardului dvs. Acestea sunt stocate si procesate automat in mod securizat si criptat de catre Stripe
-                    Payments Europe Limited Irlanda.
+                    cardului dvs. Acestea sunt stocate si procesate automat in mod securizat si criptat de catre <a
+                        href="https://stripe.com/" target="_blank" rel="noopener">Stripe Payments Europe Limited</a>.
                 </legend>
-                <legend class="fieldset-label subscription-legend text-black px-2 w-auto mb-4"><strong><span style="color:red;"><i
-                                class="fas fa-exclamation-circle"> </i></span></strong> Puteti activa un singur
+                <legend class="fieldset-label subscription-legend text-black px-2 w-auto mb-4"><strong><span
+                            style="color:red;"><i class="fas fa-exclamation-circle"> </i></span></strong> Puteti activa
+                    un singur
                     abonament (plan) selectand una din variantele din partea stanga. Prin apasarea butonului PAY sunteti
                     de acord cu<a href=""> Termenii</a> si <a href="">Conditiile</a> serviciului iar cardul dvs va fi
                     debitat cu contravaloarea mentionata in rubrica Total.
@@ -48,7 +49,7 @@
                         <p id="subscription_choice" class="text-muted">Selecteaza un abonament:</p>
                     </div>
                     <div class="col-4 text-right">
-                        <p id="price_1" class="text-muted">€0.00 / luna</p>
+                        <p id="price_1" class="text-muted">-</p>
                     </div>
                 </div>
                 <div class="row">
@@ -56,7 +57,7 @@
                         <h5 class="text-muted"><strong>Total:</strong></h5>
                     </div>
                     <div class="col-4 text-right">
-                        <h5 id="price_2" class="text-muted font-weight-bold">€0.00 / luna</h5>
+                        <h5 id="price_2" class="text-muted font-weight-bold">-</h5>
                     </div>
                 </div>
                 <hr class="mt-4">
@@ -103,7 +104,8 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-3 mb-4 mt-3">
-                            <form action="{% url 'subscription' %}" method="POST" id="payment-form_{{ forloop.counter }}" class="text-center">
+                            <form action="{% url 'subscription' %}" method="POST"
+                                id="payment-form_{{ forloop.counter }}" class="text-center">
                                 {% csrf_token %}
                                 <input type="hidden" id="{{ product.description_10 }}" name="product_id"
                                     value="{{ product.description_10 }}" required>

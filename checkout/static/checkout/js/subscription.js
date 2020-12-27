@@ -15,7 +15,7 @@ $(document).ready(function () {
             $("#submit-subscription_1").attr("disabled", "disabled").css('cursor', 'not-allowed');
             $("#checkbox_2, #checkbox_3, #checkbox_4, #checkbox_5, #checkbox_6, #checkbox_7, #checkbox_8").removeAttr("disabled").css('cursor', 'pointer');
             $('#subscription_choice').text('Selecteaza un abonament:');
-            $("#price_1, #price_2").text('€0.00 / luna');
+            $("#price_1, #price_2").text('-');
             $("#card_1").removeClass("card-subscription-selected").addClass("card-subscription");
         }
     });
@@ -32,7 +32,7 @@ $(document).ready(function () {
             $("#submit-subscription_2").attr("disabled", "disabled").css('cursor', 'not-allowed');
             $("#checkbox_1, #checkbox_3, #checkbox_4, #checkbox_5, #checkbox_6, #checkbox_7, #checkbox_8").removeAttr("disabled").css('cursor', 'pointer');
             $('#subscription_choice').text('Selecteaza un abonament:');
-            $("#price_1, #price_2").text('€0.00 / luna');
+            $("#price_1, #price_2").text('-');
             $("#card_2").removeClass("card-subscription-selected").addClass("card-subscription");
         }
     });
@@ -49,7 +49,7 @@ $(document).ready(function () {
             $("#submit-subscription_3").attr("disabled", "disabled").css('cursor', 'not-allowed');
             $("#checkbox_2, #checkbox_1, #checkbox_4, #checkbox_5, #checkbox_6, #checkbox_7, #checkbox_8").removeAttr("disabled").css('cursor', 'pointer');
             $('#subscription_choice').text('Selecteaza un abonament:');
-            $("#price_1, #price_2").text('€0.00 / luna');
+            $("#price_1, #price_2").text('-');
             $("#card_3").removeClass("card-subscription-selected").addClass("card-subscription");
         }
     });
@@ -66,7 +66,7 @@ $(document).ready(function () {
             $("#submit-subscription_4").attr("disabled", "disabled").css('cursor', 'not-allowed');
             $("#checkbox_2, #checkbox_3, #checkbox_1, #checkbox_5, #checkbox_6, #checkbox_7, #checkbox_8").removeAttr("disabled").css('cursor', 'pointer');
             $('#subscription_choice').text('Selecteaza un abonament:');
-            $("#price_1, #price_2").text('€0.00 / luna');
+            $("#price_1, #price_2").text('-');
             $("#card_4").removeClass("card-subscription-selected").addClass("card-subscription");
         }
     });
@@ -83,7 +83,7 @@ $(document).ready(function () {
             $("#submit-subscription_5").attr("disabled", "disabled").css('cursor', 'not-allowed');
             $("#checkbox_2, #checkbox_3, #checkbox_4, #checkbox_1, #checkbox_6, #checkbox_7, #checkbox_8").removeAttr("disabled").css('cursor', 'pointer');
             $('#subscription_choice').text('Selecteaza un abonament:');
-            $("#price_1, #price_2").text('€0.00 / luna');
+            $("#price_1, #price_2").text('-');
             $("#card_5").removeClass("card-subscription-selected").addClass("card-subscription");
         }
     });
@@ -100,7 +100,7 @@ $(document).ready(function () {
             $("#submit-subscription_6").attr("disabled", "disabled").css('cursor', 'not-allowed');
             $("#checkbox_2, #checkbox_3, #checkbox_4, #checkbox_5, #checkbox_1, #checkbox_7, #checkbox_8").removeAttr("disabled").css('cursor', 'pointer');
             $('#subscription_choice').text('Selecteaza un abonament:');
-            $("#price_1, #price_2").text('€0.00 / luna');
+            $("#price_1, #price_2").text('-');
             $("#card_6").removeClass("card-subscription-selected").addClass("card-subscription");
         }
     });
@@ -117,7 +117,7 @@ $(document).ready(function () {
             $("#submit-subscription_7").attr("disabled", "disabled").css('cursor', 'not-allowed');
             $("#checkbox_2, #checkbox_3, #checkbox_4, #checkbox_5, #checkbox_6, #checkbox_1, #checkbox_8").removeAttr("disabled").css('cursor', 'pointer');
             $('#subscription_choice').text('Selecteaza un abonament:');
-            $("#price_1, #price_2").text('€0.00 / luna');
+            $("#price_1, #price_2").text('-');
             $("#card_7").removeClass("card-subscription-selected").addClass("card-subscription");
         }
     });
@@ -134,7 +134,7 @@ $(document).ready(function () {
             $("#submit-subscription_8").attr("disabled", "disabled").css('cursor', 'not-allowed');
             $("#checkbox_2, #checkbox_3, #checkbox_4, #checkbox_5, #checkbox_6, #checkbox_7, #checkbox_1").removeAttr("disabled").css('cursor', 'pointer');
             $('#subscription_choice').text('Selecteaza un abonament:');
-            $("#price_1, #price_2").text('€0.00 / luna');
+            $("#price_1, #price_2").text('-');
             $("#card_8").removeClass("card-subscription-selected").addClass("card-subscription");
         }
     });
