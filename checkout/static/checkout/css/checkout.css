@@ -166,3 +166,7 @@ div a img {
 #submit-subscription_1, #submit-subscription_2, #submit-subscription_3, #submit-subscription_4, #submit-subscription_5, #submit-subscription_6, #submit-subscription_7, #submit-subscription_8 {
     cursor: not-allowed;
 }
+
+.checkout-legend, .subscription-legend {
+    font-size: .9rem;
+}
