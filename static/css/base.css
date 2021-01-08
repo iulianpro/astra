@@ -129,7 +129,7 @@ nav li a:hover, ul li a:hover {
 }
 
 .header-container {
-    padding-top: 134px;
+    padding-top: 132px;
 }
 
 h2.logo-font {
@@ -153,11 +153,17 @@ h2.logo-font {
     div h1 p {
         font-size: 3rem;
     }
+    .header-container {
+        padding-top: 121px;
+    }
 }
 
 @media (max-width: 767px) {
     div h1 p {
         font-size: 2.5rem;
+    }
+    .header-container {
+        padding-top: 121px;
     }
 }
 
@@ -165,26 +171,14 @@ h2.logo-font {
     div h1 p {
         font-size: 2rem;
     }
+    .header-container {
+        padding-top: 116px;
+    }
 }
 
 @media (min-width: 400px) {
     h2.logo-font {
         font-size: 2rem;
-    }
-}
-
-/* fixed top navbar only on medium and up */
-
-@media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    }
-    .header-container {
-        padding-top: 134px;
     }
 }
 
@@ -286,7 +280,7 @@ h2.logo-font {
         z-index: 1030;
     }
     .header-container {
-        padding-top: 134px;
+        padding-top: 132px;
     }
 }
 
