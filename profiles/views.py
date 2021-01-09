@@ -122,7 +122,8 @@ def profile(request):
             balance = -import_balance/100
 
             # retrieve last ended subscription from Stripe
-            last_subscription = stripe.Subscription.list(customer=customer_id, status='ended', limit=2)
+            last_subscription = stripe.Subscription.list(
+                customer=customer_id, status='ended', limit=2)
             if not last_subscription.data:
                 last_created = None
                 last_start = None
@@ -132,9 +133,12 @@ def profile(request):
                 stripe_last_start = last_subscription.data[0].current_period_start
                 stripe_last_end = last_subscription.data[0].current_period_end
 
-                last_created = time.strftime(format, time.localtime(stripe_last_created))
-                last_start = time.strftime(format, time.localtime(stripe_last_start))
-                last_end = time.strftime(format, time.localtime(stripe_last_end))
+                last_created = time.strftime(
+                    format, time.localtime(stripe_last_created))
+                last_start = time.strftime(
+                    format, time.localtime(stripe_last_start))
+                last_end = time.strftime(
+                    format, time.localtime(stripe_last_end))
 
             template = 'profiles/profile.html'
             context = {
@@ -172,9 +176,9 @@ def profile(request):
         }
         return render(request, template, context)
 
-    print(4)
     if ActiveSubscription.objects.filter(sub_customer=request.user).exists():
-        active_subscription = ActiveSubscription.objects.get(sub_customer=request.user)
+        active_subscription = ActiveSubscription.objects.get(
+            sub_customer=request.user)
         last_created = active_subscription.sub_date_created
         last_start = active_subscription.sub_date_start
         last_end = active_subscription.sub_date_end
@@ -194,6 +198,7 @@ def profile(request):
             'last_start': last_start,
             'last_end': last_end,
         }
+        print(4)
         return render(request, template, context)
     else:
         import_balance = this_data[0].balance
@@ -208,6 +213,7 @@ def profile(request):
             'subscription': subscription,
             'balance': balance,
         }
+        print(5)
         return render(request, template, context)
 
 

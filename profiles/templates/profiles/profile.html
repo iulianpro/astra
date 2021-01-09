@@ -67,10 +67,10 @@
                 {% endif %}
             </p>
             {% else %}
-            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Reinnoire automata: &nbsp;-
+            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Reinnoire automata: &nbsp;<span
+                    class="text-danger">activeaza acum un abonament nou</span>
                 &nbsp;<small><i class="text-mutted fas fa-exclamation-circle" data-toggle="tooltip"
-                        data-placement="right"
-                        title="Activeaza reinnoirea automata din partea dreapta Administrare / Istoric"></i></small>
+                        data-placement="right" title="Comanda abonament nou sau Test 24h"></i></small>
             </p>
             {% endif %}
             <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
