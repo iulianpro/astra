@@ -27,33 +27,43 @@
         <div class="col-12 col-lg-6">
             <p class="text-muted mb-0"><strong>{% if fname %} {{ fname }} {% else %} Prenume {% endif %}
                     {% if lname %}{{ lname }} {% else %} Nume {% endif %}</strong> &nbsp;|&nbsp; {{ email }}
-                &nbsp;|&nbsp; Credit cont: {% if balance %}€{{ balance|floatformat:2 }}{% else %}€0.00 {% endif %}
+                &nbsp;|&nbsp; Credit: {% if balance %}€{{ balance|floatformat:2 }}{% else %}€0.00 {% endif %}
                 &nbsp;<small><i class=" fas fa-exclamation-circle" data-toggle="tooltip" data-placement="right"
-                        title="Utilizat pentru reinnoirea abonamentului daca aceasta este activata"></i></small>
+                        title="Utilizat pentru reinnoirea abonamentului daca optiunea este activata"></i></small>
             </p>
 
             {% if b %}
-            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Abonament: {{ b }}
+            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Abonament activ: {{ b }}
                 luni, activat la {{ c }}, valabil pana la {{ d }} &nbsp;<small><i
                         class="text-mutted fas fa-exclamation-circle" data-toggle="tooltip" data-placement="right"
-                        title="Perioada de valabilitate a abonamentului"></i></small>
+                        title="Perioada de valabilitate a abonamentului activ"></i></small>
             </p>
             {% else %}
-            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Abonament activ: nu exista
-                inca &nbsp;<small><i class="text-mutted fas fa-exclamation-circle" data-toggle="tooltip"
-                        data-placement="right" title="Perioada de valabilitate a abonamentului"></i></small>
+            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Abonament activ: nu aveti un abonament
+                activ &nbsp;<small><i class="text-mutted fas fa-exclamation-circle" data-toggle="tooltip"
+                        data-placement="right" title="Perioada de valabilitate a abonamentului activ"></i></small>
+            </p>
+            {% endif %}
+
+            {% if last_created %}
+            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Abonament anterior: valabil de la
+                {{last_start }}, pana la {{ last_end }} &nbsp;<small><i class="text-mutted fas fa-exclamation-circle"
+                        data-toggle="tooltip" data-placement="right"
+                        title="Perioada de valabilitate a abonamentului precedent"></i></small>
+            </p>
+            {% else %}
+            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Abonament anterior: fara istoric
+                &nbsp;<small><i class="text-mutted fas fa-exclamation-circle" data-toggle="tooltip"
+                        data-placement="right" title="Perioada de valabilitate a abonamentului precedent"></i></small>
             </p>
             {% endif %}
 
             {% if this_status %}
-            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Reinnoire
-                automata:{% if this_status == 'ACTIVATA' %} <span class="text-success"> {{ this_status }} </span>
-                &nbsp;<small><i class="text-mutted fas fa-exclamation-circle" data-toggle="tooltip"
-                        data-placement="right"
-                        title="Activeaza reinnoirea automata din partea dreapta Administrare / Istoric"></i></small>
+            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Reinnoire automata:
+                {% if this_status == 'ACTIVATA' %} <span class="text-success"> {{ this_status }} </span>
                 {% else %} <span class="text-danger"> {{ this_status }} </span> &nbsp;<small><i
                         class="text-mutted fas fa-exclamation-circle" data-toggle="tooltip" data-placement="right"
-                        title="Activeaza reinnoirea automata din partea dreapta Administrare / Istoric"></i></small>
+                        title="Activeaza prin accesare Administrare / Istoric"></i></small>
                 {% endif %}
             </p>
             {% else %}

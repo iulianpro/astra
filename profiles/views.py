@@ -121,6 +121,21 @@ def profile(request):
             import_balance = this_data[0].balance
             balance = -import_balance/100
 
+            # retrieve last ended subscription from Stripe
+            last_subscription = stripe.Subscription.list(customer=customer_id, status='ended', limit=2)
+            if not last_subscription.data:
+                last_created = None
+                last_start = None
+                last_end = None
+            else:
+                stripe_last_created = last_subscription.data[0].created
+                stripe_last_start = last_subscription.data[0].current_period_start
+                stripe_last_end = last_subscription.data[0].current_period_end
+
+                last_created = time.strftime(format, time.localtime(stripe_last_created))
+                last_start = time.strftime(format, time.localtime(stripe_last_start))
+                last_end = time.strftime(format, time.localtime(stripe_last_end))
+
             template = 'profiles/profile.html'
             context = {
                 'form': form,
@@ -134,14 +149,18 @@ def profile(request):
                 'b': active_subscription.sub_period,
                 'c': active_subscription.sub_date_start,
                 'd': active_subscription.sub_date_end,
+                'last_created': last_created,
+                'last_start': last_start,
+                'last_end': last_end,
                 'this_status': this_status,
             }
             return render(request, template, context)
         else:
             print(2)
             print('Customer doesn\'t have invoice')
-    except:
+    except Exception as ex:
         print(3)
+        print(ex)
         template = 'profiles/profile.html'
         context = {
             'form': form,
@@ -154,16 +173,42 @@ def profile(request):
         return render(request, template, context)
 
     print(4)
-    template = 'profiles/profile.html'
-    context = {
-        'form': form,
-        'email': email,
-        'fname': fname,
-        'lname': lname,
-        'customer_id': customer_id,
-        'subscription': subscription,
-    }
-    return render(request, template, context)
+    if ActiveSubscription.objects.filter(sub_customer=request.user).exists():
+        active_subscription = ActiveSubscription.objects.get(sub_customer=request.user)
+        last_created = active_subscription.sub_date_created
+        last_start = active_subscription.sub_date_start
+        last_end = active_subscription.sub_date_end
+
+        import_balance = this_data[0].balance
+        balance = -import_balance/100
+        template = 'profiles/profile.html'
+        context = {
+            'form': form,
+            'email': email,
+            'fname': fname,
+            'lname': lname,
+            'customer_id': customer_id,
+            'subscription': subscription,
+            'balance': balance,
+            'last_created': last_created,
+            'last_start': last_start,
+            'last_end': last_end,
+        }
+        return render(request, template, context)
+    else:
+        import_balance = this_data[0].balance
+        balance = -import_balance/100
+        template = 'profiles/profile.html'
+        context = {
+            'form': form,
+            'email': email,
+            'fname': fname,
+            'lname': lname,
+            'customer_id': customer_id,
+            'subscription': subscription,
+            'balance': balance,
+        }
+        return render(request, template, context)
 
 
 @login_required()
