@@ -13,3 +13,15 @@ def about_us(request):
 
 def contact(request):
     return render(request, 'home/contact.html')
+
+
+def faq(request):
+    return render(request, 'home/faq.html')
+
+
+def terms(request):
+    return render(request, 'home/terms.html')
+
+
+def conditions(request):
+    return render(request, 'home/conditions.html')
