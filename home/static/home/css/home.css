@@ -1,69 +1,63 @@
-.acc-container {
-    margin-top: 60px;
+/* Style the element that is used to open and close the accordion class */
+
+.accordion-container {
+    padding: 0 50px 0 50px;
 }
 
-a:hover, a:focus {
-    text-decoration: none;
+p.accordion {
+    background-image: linear-gradient(to bottom, rgb(197, 197, 197), rgb(236, 236, 236));
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
     outline: none;
+    transition: 0.4s;
+    margin-bottom: 10px;
 }
 
-#accordion .panel {
-    border: none;
-    border-radius: 3px;
-    box-shadow: none;
-    margin-bottom: 15px;
+/* Add a background color to the accordion if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+p.accordion.active, p.accordion:hover {
+    background-color: #ddd;
 }
 
-#accordion .panel-heading {
-    padding: 0;
-    border: none;
-    border-radius: 3px;
+/* Unicode character for "plus" sign (+) */
+
+p.accordion:after {
+    content: '\2795';
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
 }
 
-#accordion .panel-title a {
-    display: block;
-    padding: 12px 15px 12px 50px;
-    background: linear-gradient(to bottom, #fefefe, #cdcdcd);
-    border: 1px solid #c3c3c3;
-    border-radius: 3px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #676767;
-    text-shadow: 1px 1px 1px #fff;
-    position: relative;
+/* Unicode character for "minus" sign (-) */
+
+p.accordion.active:after {
+    content: "\2796";
 }
 
-#accordion .panel-title a:before {
-    content: "\f068";
-    font-family: "Font Awesome 5 Free";
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-    border-radius: 50%;
-    background: #929191;
-    font-size: 12px;
-    font-weight: 900;
-    color: #fdfbfb;
-    text-align: center;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-    text-shadow: none;
-    position: absolute;
-    top: 8px;
-    left: 15px;
+/* Style the element that is used for the panel class */
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.4s ease-in-out;
+    opacity: 0;
+    margin-bottom: 10px;
 }
 
-#accordion .panel-title a.collapsed:before {
-    content: "\f067";
+.panel p:nth-child(1) {
+    padding-top: 18px;
 }
 
-#accordion .panel-body {
-    padding: 10px 15px;
-    font-size: 15px;
-    color: #222;
-    line-height: 27px;
-    border: none;
-}
-
-#accordion .panel-body p {
-    margin-bottom: 0;
+div.panel.show {
+    opacity: 1;
+    max-height: 500px;
+    background-color: #f1f1f1;
+    /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
 }
