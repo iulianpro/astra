@@ -113,25 +113,24 @@ def profile(request):
         if length != 0:
             print(1)
 
-            invoice = have_sub[0].latest_invoice
-            customer_invoice = stripe.Invoice.retrieve(
-                invoice,
-            )
-            hosted_invoice_url = customer_invoice.hosted_invoice_url
+            # retrieve list of invoices from Stripe
+            for check_sub in this_data:
+                current_subscription_id = check_sub.subscriptions.data[0].id
+            last_subscription = stripe.Invoice.list(
+                customer=customer_id, subscription=current_subscription_id, limit=2)
+            hosted_invoice_url = last_subscription.data[0].hosted_invoice_url
             import_balance = this_data[0].balance
             balance = -import_balance/100
 
-            # retrieve last ended subscription from Stripe
-            last_subscription = stripe.Subscription.list(
-                customer=customer_id, status='ended', limit=2)
-            if not last_subscription.data:
+            length_last_subscription = len(last_subscription.data)
+            if length_last_subscription < 2:
                 last_created = None
                 last_start = None
                 last_end = None
             else:
-                stripe_last_created = last_subscription.data[0].created
-                stripe_last_start = last_subscription.data[0].current_period_start
-                stripe_last_end = last_subscription.data[0].current_period_end
+                stripe_last_created = last_subscription.data[1].created
+                stripe_last_start = last_subscription.data[1].lines.data[0].period.start
+                stripe_last_end = last_subscription.data[1].lines.data[0].period.end
 
                 last_created = time.strftime(
                     format, time.localtime(stripe_last_created))
