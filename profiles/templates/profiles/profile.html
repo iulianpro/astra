@@ -46,15 +46,15 @@
             {% endif %}
 
             {% if last_created %}
-            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Abonament anterior: valabil de la
+            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Abonament expirat: valabil de la
                 {{last_start }}, pana la {{ last_end }} &nbsp;<small><i class="text-mutted fas fa-exclamation-circle"
                         data-toggle="tooltip" data-placement="right"
-                        title="Perioada de valabilitate a abonamentului precedent"></i></small>
+                        title="Abonament mentinut pe intreaga perioada de valabilitate"></i></small>
             </p>
             {% else %}
-            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Abonament anterior: fara istoric
+            <p class="text-muted mb-0"><i class="far fa-play-circle"></i> &nbsp;Abonament expirat: nu sunt date
                 &nbsp;<small><i class="text-mutted fas fa-exclamation-circle" data-toggle="tooltip"
-                        data-placement="right" title="Perioada de valabilitate a abonamentului precedent"></i></small>
+                        data-placement="right" title="Abonament mentinut pe intreaga perioada de valabilitate"></i></small>
             </p>
             {% endif %}
 
