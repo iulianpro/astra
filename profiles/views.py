@@ -11,7 +11,7 @@ from .forms import UserProfileForm
 from checkout.models import ActiveSubscription
 
 stripe.api_key = settings.STRIPE_SECRET
-return_url = 'http://127.0.0.1:8000/profile/'
+return_url = 'https://iulianpro-astra.herokuapp.com/profile/'
 
 
 @login_required()

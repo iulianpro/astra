@@ -18,8 +18,8 @@ window.onload = function (e) {
             // a successful payment.
             // Instead use one of the strategies described in
             // https://stripe.com/docs/payments/checkout/fulfill-orders
-            successUrl: 'http://127.0.0.1:8000/checkout/payment/success/',
-            cancelUrl: 'http://127.0.0.1:8000/checkout/payment/canceled/',
+            successUrl: 'https://iulianpro-astra.herokuapp.com/checkout/payment/success/',
+            cancelUrl: 'https://iulianpro-astra.herokuapp.com/checkout/payment/canceled/',
         })
             .then(function (result) {
                 if (result.error) {
